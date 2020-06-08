@@ -142,8 +142,8 @@ class Checker:
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def check_api(self, url, chain_id):
         try:
-            url = url.rstrip('/')
-            cleos = eospy.cleos.Cleos(url=url)
+            api_url = url.rstrip('/')
+            cleos = eospy.cleos.Cleos(url=api_url)
             info = cleos.get_info(timeout=2)
 
             head_block_time = info['head_block_time']
