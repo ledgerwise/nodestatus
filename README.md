@@ -14,7 +14,7 @@ optional arguments:
 ```
 
 ## Output sample
-[WAX mainnet](api.ledgerwise.io/apps:/nodestatus/1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4.json)
+[WAX mainnet](https://api.ledgerwise.io/apps/nodestatus/1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4.json)
 
 ## Frontend consumer
-[LedgerWise Tools](tools.ledgerwise.io/nodestatus)
+[LedgerWise Tools](https://tools.ledgerwise.io/nodestatus)
