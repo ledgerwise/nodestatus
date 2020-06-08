@@ -170,6 +170,10 @@ def main():
                 checker.endpoint_errors,
                 'endpoint_oks':
                 checker.endpoint_oks,
+                'api_endpoints':
+                checker.api_endpoints,
+                'p2p_endpoints':
+                checker.p2p_endpoints,
             })
 
         healthy_api_endpoints = list(set(healthy_api_endpoints))
