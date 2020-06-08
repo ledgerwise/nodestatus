@@ -37,7 +37,7 @@ parser.add_argument('-l',
                     default='{}.log'.format(
                         os.path.basename(__file__).split('.')[0]),
                     help='Log file')
-parser.add_argument("-ci", '--chain_id', default='')
+
 args = parser.parse_args()
 
 VERBOSE = args.verbose
