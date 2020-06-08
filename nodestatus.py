@@ -174,6 +174,8 @@ def main():
                 checker.api_endpoints,
                 'p2p_endpoints':
                 checker.p2p_endpoints,
+                'bp_json':
+                checker.producer_info['bp_json_url']
             })
 
         healthy_api_endpoints = list(set(healthy_api_endpoints))
