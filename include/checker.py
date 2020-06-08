@@ -111,7 +111,8 @@ class Checker:
         except Exception as e:
             self.status = 2
             msg = 'Error getting {} bp.json ({}): {}'.format(
-                self.producer_info, self.producer_info['bp_json_url'], e)
+                self.producer_info['owner'], self.producer_info['bp_json_url'],
+                e)
             self.logging.critical(msg)
             self.errors.append(msg)
 
