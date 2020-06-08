@@ -122,9 +122,7 @@ class Checker:
             sock.settimeout(3)
             host, port = url.split(':')
             result = sock.connect_ex((host, int(port)))
-            if result == 0:
-                return
-            else:
+            if result != 0:
                 self.status = 2
                 self.endpoint_errors[url].append(
                     'Error connecting to {}'.format(url))
@@ -137,7 +135,9 @@ class Checker:
             self.logging.critical('Error connecting to {}: {}'.format(url, e))
 
         self.healthy_p2p_endpoints.append(url)
-        self.logging.info('P2P node {} is fine'.format(url))
+        msg = 'P2P node {} is responding'.format(url)
+        self.logging.info(msg)
+        self.endpoint_oks[url].append(msg)
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def check_api(self, url, chain_id):
@@ -186,7 +186,9 @@ class Checker:
             self.logging.critical(msg)
 
         self.healthy_api_endpoints.append(url)
-        self.logging.info('API node {} is fine'.format(url))
+        msg = 'API node {} is responding correctly'.format(url)
+        self.logging.info(msg)
+        self.endpoint_oks[url].append(msg)
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_history(self, url):
