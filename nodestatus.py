@@ -104,7 +104,7 @@ def get_producers(chain):
                 if not (x['url'] == 'https://wax.io'
                         and x['owner'].endswith('.wax'))
             ]
-        pp.pprint(active_producers)
+
         if chain['limit']:
             active_producers = active_producers[:chain['limit']]
 
