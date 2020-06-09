@@ -97,10 +97,18 @@ def get_producers(chain):
             urljoin(x['url'], '/chains.json')
         } for x in producers if x['is_active'] != 0]
 
+        if chain[
+                'chain_id'] == '1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4':
+            active_producers = [
+                x for x in active_producers
+                if not (x['url'] == 'https://wax.io'
+                        and x['owner'].endswith('.wax'))
+            ]
+        pp.pprint(active_producers)
         if chain['limit']:
             active_producers = active_producers[:chain['limit']]
 
-        for num, producer in enumerate(active_producers):
+        for num, _ in enumerate(active_producers):
             active_producers[num]['position'] = num + 1
             if num < 21:
                 active_producers[num]['top21'] = True

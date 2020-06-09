@@ -149,7 +149,7 @@ class Checker:
             if response.status_code != 200:
                 self.status = 2
                 msg = 'Error connecting to {}: {}'.format(
-                    url, 'Response error: {}'.format(response.status_code))
+                    api_url, 'Response error: {}'.format(response.status_code))
                 self.endpoint_errors[url].append(msg)
                 self.logging.critical(msg)
                 return
