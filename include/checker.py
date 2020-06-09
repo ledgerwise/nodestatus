@@ -117,10 +117,10 @@ class Checker:
             self.errors.append(msg)
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2))
-    def check_p2p(self, url):
+    def check_p2p(self, url, timeout):
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.settimeout(3)
+            sock.settimeout(timeout)
             host, port = url.split(':')
             result = sock.connect_ex((host, int(port)))
             if result != 0:
@@ -141,11 +141,32 @@ class Checker:
         self.endpoint_oks[url].append(msg)
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
-    def check_api(self, url, chain_id):
+    def check_api(self, url, chain_id, timeout):
+        errors_found = False
         try:
-            api_url = url.rstrip('/')
-            cleos = eospy.cleos.Cleos(url=api_url)
-            info = cleos.get_info(timeout=2)
+            api_url = '{}/v1/chain/get_info'.format(url.rstrip('/'))
+            response = requests.get(api_url, timeout=timeout)
+            if response.status_code != 200:
+                self.status = 2
+                msg = 'Error connecting to {}: {}'.format(
+                    url, 'Response error: {}'.format(response.status_code))
+                self.endpoint_errors[url].append(msg)
+                self.logging.critical(msg)
+                return
+
+            #Check for appropriate CORS headers
+            allow_origin = response.headers.get('access-control-allow-origin')
+            if not allow_origin or allow_origin != '*':
+                self.status = 2
+                msg = 'Invalid value for CORS header access-control-allow-origin or header not present'
+                self.endpoint_errors[url].append(msg)
+                self.logging.critical(msg)
+            else:
+                msg = 'CORS headers properly configured'
+                self.logging.info(msg)
+                self.endpoint_oks[url].append(msg)
+
+            info = response.json()
 
             head_block_time = info['head_block_time']
             head_block_time_dt = datetime.datetime.strptime(
@@ -159,18 +180,21 @@ class Checker:
                     humanize.naturaldelta(secs_diff))
                 self.endpoint_errors[url].append(msg)
                 self.logging.critical(msg)
+                errors_found = True
 
             if info['chain_id'] != chain_id:
                 self.status = 2
                 msg = 'Wrong chain id'
                 self.endpoint_errors[url].append(msg)
                 self.logging.critical(msg)
+                errors_found = True
 
         except requests.exceptions.SSLError as e:
             self.status = 2
             msg = 'Error connecting to {}: {}'.format(url, 'Certificate error')
             self.endpoint_errors[url].append(msg)
             self.logging.critical(msg)
+            errors_found = True
 
         except requests.exceptions.Timeout as e:
             self.status = 2
@@ -178,6 +202,7 @@ class Checker:
                                                       'Connection timed out')
             self.endpoint_errors[url].append(msg)
             self.logging.critical(msg)
+            errors_found = True
 
         except Exception as e:
             print(type(Exception))
@@ -185,18 +210,20 @@ class Checker:
             msg = 'Error connecting to {}: {}'.format(url, e)
             self.endpoint_errors[url].append(msg)
             self.logging.critical(msg)
+            errors_found = True
 
-        self.healthy_api_endpoints.append(url)
-        msg = 'API node {} is responding correctly'.format(url)
-        self.logging.info(msg)
-        self.endpoint_oks[url].append(msg)
+        if not errors_found:
+            self.healthy_api_endpoints.append(url)
+            msg = 'API node {} is responding correctly'.format(url)
+            self.logging.info(msg)
+            self.endpoint_oks[url].append(msg)
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
-    def check_history(self, url):
+    def check_history(self, url, timeout):
         try:
             history_url = url.rstrip('/')
             cleos = eospy.cleos.Cleos(url=history_url)
-            result = cleos.get_actions('eosio')
+            result = cleos.get_actions('eosio', timeout=timeout)
             if not 'actions' in result:
                 self.logging.info('No actions in response')
                 return
@@ -216,11 +243,11 @@ class Checker:
         self.logging.info(msg)
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
-    def check_hyperion(self, url):
+    def check_hyperion(self, url, timeout):
         try:
             history_url = '{}/v2/history/get_actions?limit=1'.format(
                 url.rstrip('/'))
-            response = requests.get(history_url)
+            response = requests.get(history_url, timeout=timeout)
             if response.status_code != 200:
                 self.logging.info('No hyperion found ({})'.format(
                     response.status_code))
@@ -248,7 +275,7 @@ class Checker:
         self.logging.info(msg)
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
-    def check_patroneos(self, url):
+    def check_patroneos(self, url, timeout):
         try:
             url = url.rstrip('/')
             headers = {
@@ -258,7 +285,7 @@ class Checker:
             r = requests.post('{}/v1/chain/get_account'.format(url),
                               data='{"account_name"="eosmetaliobp"}',
                               headers=headers,
-                              timeout=2)
+                              timeout=timeout)
             r_json = r.json()
 
             if 'message' not in r_json:
@@ -286,9 +313,10 @@ class Checker:
         self.get_bpjson()
         if self.bp_json:
             for p2p in self.p2p_endpoints:
-                self.check_p2p(p2p)
+                self.check_p2p(p2p, self.chain_info['timeout'])
             for api in self.api_endpoints:
-                self.check_api(api, self.chain_info['chain_id'])
-                self.check_history(api)
-                self.check_hyperion(api)
-                self.check_patroneos(api)
+                self.check_api(api, self.chain_info['chain_id'],
+                               self.chain_info['timeout'])
+                self.check_history(api, self.chain_info['timeout'])
+                self.check_hyperion(api, self.chain_info['timeout'])
+                self.check_patroneos(api, self.chain_info['timeout'])
