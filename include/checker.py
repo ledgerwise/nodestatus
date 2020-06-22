@@ -19,6 +19,7 @@ class Checker:
         self.status = 0
         self.errors = []
         self.oks = []
+        self.warnings = []
         self.endpoint_errors = {}
         self.endpoint_oks = {}
         self.api_endpoints = []

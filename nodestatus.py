@@ -148,7 +148,7 @@ def main():
                 testnet_producers += [
                     x['owner'] for x in testnet_producers_array
                 ]
-
+            print(testnet_producers)
         except Exception as e:
             logging.critical('Too many retries getting producers')
             continue
@@ -162,9 +162,8 @@ def main():
             if producer['owner'] not in testnet_producers:
                 msg = 'Producer {} is not registered as producer in testnet'.format(
                     producer['owner'])
-                logging.error(msg)
-                checker.errors.append(msg)
-                checker.status = 2
+                logging.warning(msg)
+                checker.warnings.append(msg)
             else:
                 msg = 'Producer {} is registered as producer in testnet'.format(
                     producer['owner'])
@@ -194,6 +193,8 @@ def main():
                 checker.errors,
                 'oks':
                 checker.oks,
+                'warnings':
+                checker.warnings,
                 'endpoint_errors':
                 checker.endpoint_errors,
                 'endpoint_oks':
