@@ -160,7 +160,7 @@ def main():
 
             #Check producer in testnet
             if producer['owner'] not in testnet_producers:
-                msg = 'Producer name {} is not registered as producer in testnet'.format(
+                msg = 'Producer {} might not be registered or registered with some other name in testnet'.format(
                     producer['owner'])
                 logging.warning(msg)
                 checker.warnings.append(msg)
