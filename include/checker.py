@@ -294,8 +294,9 @@ class Checker:
                     errors_found = True
 
                 if item['service'] == 'Elasticsearch':
-                    if item['service_data']['total_indexed_blocks'] and item[
-                            'service_data']['last_indexed_block']:
+                    if 'total_indexed_blocks' in item[
+                            'service_data'] and 'last_indexed_block' in item[
+                                'service_data']:
                         last_indexed_block = item['service_data'][
                             'last_indexed_block']
                         total_indexed_blocks = item['service_data'][
