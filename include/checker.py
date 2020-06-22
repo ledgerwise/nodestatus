@@ -29,9 +29,9 @@ class Checker:
         self.healthy_hyperion_endpoints = []
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
-    def get_producer_chainsjson_path(self, url, chain_id):
+    def get_producer_chainsjson_path(self, url, chain_id, timeout):
         try:
-            chains_json_content = requests.get(url).json()
+            chains_json_content = requests.get(url, timeout=timeout).json()
             return chains_json_content['chains'][chain_id]
         except Exception as e:
             self.logging.critical(
@@ -39,12 +39,13 @@ class Checker:
             return None
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
-    def get_bpjson(self):
+    def get_bpjson(self, timeout):
         has_ssl_endpoints = False
 
         #Check if network is defined in chains.json
         chains_json_path = self.get_producer_chainsjson_path(
-            self.producer_info['chains_json_url'], self.chain_info['chain_id'])
+            self.producer_info['chains_json_url'], self.chain_info['chain_id'],
+            timeout)
 
         if chains_json_path:
             self.producer_info['bp_json_url'] = urljoin(
@@ -57,7 +58,7 @@ class Checker:
             }
             response = requests.get(self.producer_info['bp_json_url'],
                                     headers=headers,
-                                    timeout=2)
+                                    timeout=timeout)
 
             if response.status_code != 200:
                 msg = ('Error getting bp.json: {} - {}'.format(
@@ -352,7 +353,7 @@ class Checker:
         self.logging.info(msg)
 
     def run_checks(self):
-        self.get_bpjson()
+        self.get_bpjson(timeout=self.chain_info['timeout'])
         if self.bp_json:
             for p2p in self.p2p_endpoints:
                 self.check_p2p(p2p, self.chain_info['timeout'])
