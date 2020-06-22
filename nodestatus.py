@@ -139,9 +139,15 @@ def main():
         healthy_history_endpoints = []
         healthy_hyperion_endpoints = []
         producers_array = []
+        testnet_producers = []
 
         try:
             producers = get_producers(chain_info)
+            for testnet in chain_info['testnets']:
+                testnet_producers_array = get_producers(testnet)
+                testnet_producers += [
+                    x['owner'] for x in testnet_producers_array
+                ]
 
         except Exception as e:
             logging.critical('Too many retries getting producers')
@@ -151,6 +157,20 @@ def main():
             logging.info('Checking producer {}'.format(producer['owner']))
             checker = Checker(chain_info, producer, logging)
             checker.run_checks()
+
+            #Check producer in testnet
+            if producer['owner'] not in testnet_producers:
+                msg = 'Producer {} is not registered as producer in testnet'.format(
+                    producer['owner'])
+                logging.error(msg)
+                checker.errors.append(msg)
+                checker.status = 2
+            else:
+                msg = 'Producer {} is registered as producer in testnet'.format(
+                    producer['owner'])
+                logging.info(msg)
+                checker.oks.append(msg)
+
             healthy_api_endpoints += checker.healthy_api_endpoints
             healthy_p2p_endpoints += checker.healthy_p2p_endpoints
             healthy_history_endpoints += checker.healthy_history_endpoints
