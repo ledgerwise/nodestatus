@@ -110,9 +110,9 @@ class Checker:
 
         except Exception as e:
             self.status = 2
-            msg = 'Error getting {} bp.json ({}): {}'.format(
+            msg = 'Error getting {} bp.json ({}): {} {}'.format(
                 self.producer_info['owner'], self.producer_info['bp_json_url'],
-                e)
+                e, type(e))
             self.logging.critical(msg)
             self.errors.append(msg)
 
@@ -250,7 +250,9 @@ class Checker:
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_hyperion(self, url, timeout):
+        errors_found = False
         try:
+            #Check last hyperion indexed action
             history_url = '{}/v2/history/get_actions?limit=1'.format(
                 url.rstrip('/'))
             response = requests.get(history_url, timeout=timeout)
@@ -268,17 +270,51 @@ class Checker:
                 msg = 'Hyperion Last action {} ago'.format(
                     humanize.naturaldelta(diff_secs))
                 self.logging.critical(msg)
-                return
+                self.endpoint_errors[url].append(msg)
+                errors_found = True
+
+            #Check hyperion service health
+            health_url = '{}/v2/health'.format(url.rstrip('/'))
+            response = requests.get(health_url, timeout=timeout)
+            if response.status_code != 200:
+                self.logging.info(
+                    'Error {} trying to check hyperion health endpoint'.format(
+                        response.status_code))
+                self.endpoint_errors[url].append(msg)
+                errors_found = True
+
+            json = response.json()
+            for item in json['health']:
+                if item['status'] != 'OK':
+                    msg = 'Hyperion service {} has status {}'.format(
+                        item['service'], item['status'])
+                    self.logging.critical(msg)
+                    self.endpoint_errors[url].append(msg)
+                    errors_found = True
+
+                if item['service'] == 'Elasticsearch':
+                    if item['service_data']['total_indexed_blocks'] and item[
+                            'service_data']['last_indexed_block']:
+                        last_indexed_block = item['service_data'][
+                            'last_indexed_block']
+                        total_indexed_blocks = item['service_data'][
+                            'total_indexed_blocks']
+                        if last_indexed_block != total_indexed_blocks:
+                            msg = 'Hyperion ElastiSearch last_indexed_block is different than total_indexed_blocks'
+                            self.logging.critical(msg)
+                            self.endpoint_errors[url].append(msg)
+                            errors_found = True
 
         except Exception as e:
             self.logging.error(
                 'Error getting hyperion history from {}: {}'.format(url, e))
             return
 
-        self.healthy_hyperion_endpoints.append(url)
-        msg = 'Hyperion history ok for {}'.format(url)
-        self.endpoint_oks[url].append(msg)
-        self.logging.info(msg)
+        if not errors_found:
+            self.healthy_hyperion_endpoints.append(url)
+            msg = 'Hyperion history ok for {}'.format(url)
+            self.endpoint_oks[url].append(msg)
+            self.logging.info(msg)
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_patroneos(self, url, timeout):
