@@ -129,11 +129,17 @@ class Checker:
                     'Error connecting to {}'.format(url))
                 self.logging.critical('Error connecting to {}'.format(url))
                 return
+        except ValueError as e:
+            self.status = 2
+            self.endpoint_errors[url].append(
+                'Invalid p2p host:port value {}'.format(url))
+            self.logging.critical('Invalid p2p host:port value {}'.format(url))
         except Exception as e:
             self.status = 2
             self.endpoint_errors[url].append(
                 'Error connecting to {}: {}'.format(url, e))
-            self.logging.critical('Error connecting to {}: {}'.format(url, e))
+            self.logging.critical('Error connecting to {}: {} {}'.format(
+                url, type(e), e))
 
         self.healthy_p2p_endpoints.append(url)
         msg = 'P2P node {} is responding'.format(url)
@@ -205,9 +211,9 @@ class Checker:
             errors_found = True
 
         except Exception as e:
-            print(type(Exception))
             self.status = 2
-            msg = 'Error connecting to {}: {}'.format(url, e)
+            msg = 'Error connecting to {}: {} {}'.format(
+                url, type(Exception), e)
             self.endpoint_errors[url].append(msg)
             self.logging.critical(msg)
             errors_found = True
