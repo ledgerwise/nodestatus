@@ -110,6 +110,13 @@ class Checker:
                 self.errors.append(msg)
                 self.logging.critical(msg)
 
+        except requests.exceptions.SSLError as e:
+            self.status = 2
+            msg = 'Error getting {} bp.json ({}): Certificate error'.format(
+                self.producer_info['owner'], self.producer_info['bp_json_url'])
+            self.logging.critical(msg)
+            self.errors.append(msg)
+
         except Exception as e:
             self.status = 2
             msg = 'Error getting {} bp.json ({}): {} {}'.format(
