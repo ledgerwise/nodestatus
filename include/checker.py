@@ -272,6 +272,7 @@ class Checker:
                     humanize.naturaldelta(diff_secs))
                 self.logging.critical(msg)
                 self.endpoint_errors[url].append(msg)
+                self.status = 2
                 errors_found = True
 
             #Check hyperion service health
@@ -282,6 +283,7 @@ class Checker:
                     'Error {} trying to check hyperion health endpoint'.format(
                         response.status_code))
                 self.endpoint_errors[url].append(msg)
+                self.status = 2
                 errors_found = True
 
             json = response.json()
@@ -291,6 +293,7 @@ class Checker:
                         item['service'], item['status'])
                     self.logging.critical(msg)
                     self.endpoint_errors[url].append(msg)
+                    self.status = 2
                     errors_found = True
 
                 if item['service'] == 'Elasticsearch':
@@ -305,6 +308,7 @@ class Checker:
                             msg = 'Hyperion ElastiSearch last_indexed_block is different than total_indexed_blocks'
                             self.logging.critical(msg)
                             self.endpoint_errors[url].append(msg)
+                            self.status = 2
                             errors_found = True
 
         except Exception as e:
