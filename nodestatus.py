@@ -155,7 +155,7 @@ def main():
         testnet_producers = []
 
         isFIO = chain_info[
-            'chain_id'] == '21dcae42c0182200e93f954a074011f9048a7624c6fe81d3c9541a614a88bd1c' or chain[
+            'chain_id'] == '21dcae42c0182200e93f954a074011f9048a7624c6fe81d3c9541a614a88bd1c' or chain_info[
                 'chain_id'] == 'b20901380af44ef59c5918439a1f9a41d83669020319a80574b804a5f95cbd7e'
 
         try:
