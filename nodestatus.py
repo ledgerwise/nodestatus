@@ -80,7 +80,14 @@ def get_producers(chain):
         LIMIT = 200
         CLEOS = eospy.cleos.Cleos(url=chain['api_node'])
         result = CLEOS.get_producers(limit=LIMIT)
-        producers = result['rows']
+
+        isFIO = 'producers' in result
+
+        if isFIO:
+            producers = result['producers']
+        else:
+            producers = result['rows']
+
         while result['more'] != '':
             result = CLEOS.get_producers(limit=LIMIT,
                                          lower_bound=result['more'])
