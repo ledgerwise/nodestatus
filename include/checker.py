@@ -68,6 +68,7 @@ class Checker:
                      '..') if len(response.text) > 75 else response.text))
                 self.logging.critical(msg)
                 self.errors.append(msg)
+                self.status = 2
                 return
 
             self.bp_json = response.json()
@@ -104,8 +105,10 @@ class Checker:
                 msg = 'No api nodes defined'
                 self.errors.append(msg)
                 self.logging.critical(msg)
+                self.status = 2
 
             if len(self.p2p_endpoints) == 0:
+                self.status = 2
                 msg = 'No P2P nodes defined (p2p_endpoint)'
                 self.errors.append(msg)
                 self.logging.critical(msg)
