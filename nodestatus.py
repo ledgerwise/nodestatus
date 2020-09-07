@@ -108,7 +108,8 @@ def get_producers(chain):
                 }
                 if isFIO:
                     p['fio_address'] = producer['fio_address']
-            active_producers.append(p)
+
+                active_producers.append(p)
 
         if chain[
                 'chain_id'] == '1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4':
@@ -243,15 +244,15 @@ def main():
         }
 
         PUB_PATH = '{}/pub'.format(SCRIPT_PATH)
-        CURRENT_DATE = datetime.today().strftime('%Y-%m-%d')
+        CURRENT_DATE = datetime.datetime.today().strftime('%Y-%m-%d')
         if not os.path.exists(PUB_PATH):
             os.makedirs(PUB_PATH)
         with open('{}/pub/{}.json'.format(SCRIPT_PATH, chain_info['chain_id']),
                   'w') as fp:
             json.dump(data, fp, sort_keys=True, indent=4)
         with open(
-                '{}/pub/{}{}.json'.format(SCRIPT_PATH, chain_info['chain_id'],
-                                          CURRENT_DATE), 'w') as fp:
+                '{}/pub/{}-{}.json'.format(SCRIPT_PATH, chain_info['chain_id'],
+                                           CURRENT_DATE), 'w') as fp:
             json.dump(data, fp, sort_keys=True, indent=4)
 
 
