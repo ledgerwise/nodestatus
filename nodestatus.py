@@ -243,10 +243,15 @@ def main():
         }
 
         PUB_PATH = '{}/pub'.format(SCRIPT_PATH)
+        CURRENT_DATE = datetime.today().strftime('%Y-%m-%d')
         if not os.path.exists(PUB_PATH):
             os.makedirs(PUB_PATH)
         with open('{}/pub/{}.json'.format(SCRIPT_PATH, chain_info['chain_id']),
                   'w') as fp:
+            json.dump(data, fp, sort_keys=True, indent=4)
+        with open(
+                '{}/pub/{}{}.json'.format(SCRIPT_PATH, chain_info['chain_id'],
+                                          CURRENT_DATE), 'w') as fp:
             json.dump(data, fp, sort_keys=True, indent=4)
 
 
