@@ -6,6 +6,9 @@ import datetime
 import dateutil.parser
 from urllib.parse import urljoin
 from tenacity import retry, stop_after_attempt, wait_fixed
+import pprint
+
+pp = pprint.PrettyPrinter(indent=4)
 
 
 class Checker:
@@ -22,12 +25,11 @@ class Checker:
         self.warnings = []
         self.endpoint_errors = {}
         self.endpoint_oks = {}
-        self.api_endpoints = []
-        self.p2p_endpoints = []
         self.healthy_api_endpoints = []
         self.healthy_p2p_endpoints = []
         self.healthy_history_endpoints = []
         self.healthy_hyperion_endpoints = []
+        self.nodes = []
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def get_producer_chainsjson_path(self, url, chain_id, timeout):
@@ -42,6 +44,8 @@ class Checker:
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def get_bpjson(self, timeout):
         has_ssl_endpoints = False
+        has_p2p_endpoints = False
+        has_api_endpoints = False
 
         #Check if network is defined in chains.json
         chains_json_path = self.get_producer_chainsjson_path(
@@ -73,27 +77,54 @@ class Checker:
 
             self.bp_json = response.json()
 
+            if not 'github_user' in self.bp_json['org']:
+                msg = 'github_user missing in bp.json'
+                self.logging.critical(msg)
+                self.errors.append(msg)
+                self.status = 2
+            else:
+                msg = 'github_user present in bp.json'
+                self.oks.append(msg)
+
             nodes = self.bp_json['nodes']
-            for node in nodes:
+            for index, node in enumerate(nodes):
+                if not 'node_type' in node:
+                    msg = 'node_type not present for node {}'.format(index + 1)
+                    self.logging.critical(msg)
+                    self.errors.append(msg)
+                    self.status = 2
+                    continue
+                node_type = node['node_type']
+                if type(node_type) is str:
+                    node_type = [node_type]
+                    node['node_type'] = node_type
+
+                if not 'features' in node and 'query' in node_type:
+                    msg = 'features not present for node {} of type query'.format(
+                        index + 1)
+                    self.logging.critical(msg)
+                    self.errors.append(msg)
+                    self.status = 2
+                    continue
+
                 if 'api_endpoint' in node:
-                    if node['api_endpoint'] != '':
-                        self.api_endpoints.append(node['api_endpoint'])
-                        self.endpoint_errors[node['api_endpoint']] = []
-                        self.endpoint_oks[node['api_endpoint']] = []
+                    self.endpoint_errors[node['api_endpoint']] = []
+                    self.endpoint_oks[node['api_endpoint']] = []
                 if 'ssl_endpoint' in node:
                     has_ssl_endpoints = True
-                    if node['ssl_endpoint'] != '':
-                        self.api_endpoints.append(node['ssl_endpoint'])
-                        self.endpoint_errors[node['ssl_endpoint']] = []
-                        self.endpoint_oks[node['ssl_endpoint']] = []
+                    self.endpoint_errors[node['ssl_endpoint']] = []
+                    self.endpoint_oks[node['ssl_endpoint']] = []
                 if 'p2p_endpoint' in node:
-                    if node['p2p_endpoint'] != '':
-                        self.p2p_endpoints.append(node['p2p_endpoint'])
-                        self.endpoint_errors[node['p2p_endpoint']] = []
-                        self.endpoint_oks[node['p2p_endpoint']] = []
+                    has_p2p_endpoints = True
+                    self.endpoint_errors[node['p2p_endpoint']] = []
+                    self.endpoint_oks[node['p2p_endpoint']] = []
 
-            self.api_endpoints = list(set(self.api_endpoints))
-            self.p2p_endpoint = list(set(self.p2p_endpoints))
+                if 'features' in node:
+                    if 'chain-api' in node['features']:
+                        has_api_endpoints = True
+
+                self.nodes.append(node)
+
             self.org_name = self.bp_json['org']['candidate_name']
 
             if not has_ssl_endpoints:
@@ -101,17 +132,17 @@ class Checker:
                 self.errors.append(msg)
                 self.logging.critical(msg)
 
-            if not has_ssl_endpoints and len(self.api_endpoints) == 0:
-                msg = 'No api nodes defined'
-                self.errors.append(msg)
-                self.logging.critical(msg)
-                self.status = 2
-
-            if len(self.p2p_endpoints) == 0:
+            if not has_p2p_endpoints:
                 self.status = 2
                 msg = 'No P2P nodes defined (p2p_endpoint)'
                 self.errors.append(msg)
                 self.logging.critical(msg)
+
+            if not has_api_endpoints:
+                msg = 'No chain api nodes defined'
+                self.errors.append(msg)
+                self.logging.critical(msg)
+                self.status = 2
 
         except requests.exceptions.SSLError as e:
             self.status = 2
@@ -125,6 +156,8 @@ class Checker:
             msg = 'Error getting {} bp.json ({}): {} {}'.format(
                 self.producer_info['owner'], self.producer_info['bp_json_url'],
                 e, type(e))
+
+            print('excepcion', e)
             self.logging.critical(msg)
             self.errors.append(msg)
 
@@ -261,6 +294,42 @@ class Checker:
         self.logging.info(msg)
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
+    def check_account_query(self, url, timeout):
+        try:
+            key = "PUB_K1_7phQKVpvYY9UXx9EgRRY69PfDtoReSvJtTWKCwBzTzELZ2AwK3"
+            api_url = '{}/v1/history/get_key_accounts'.format(url.rstrip('/'))
+            response = requests.post(api_url,
+                                     json={
+                                         'json': True,
+                                         'public_key': key
+                                     },
+                                     timeout=timeout)
+            if response.status_code != 200:
+                print(response.content)
+                self.status = 2
+                msg = 'Error getting accounts for key {} from {}: {}'.format(
+                    key, api_url,
+                    'Response error: {}'.format(response.status_code))
+                self.endpoint_errors[url].append(msg)
+                self.logging.critical(msg)
+                return
+
+            else:
+                msg = 'Get accounts from key is ok on {}'.format(url)
+                self.endpoint_oks[url].append(msg)
+                self.logging.info(msg)
+
+        except Exception as e:
+            msg = 'Error getting history from {}: {}'.format(url, e)
+            self.logging.error(msg)
+            return
+
+        self.healthy_history_endpoints.append(url)
+        msg = 'History ok for {}'.format(url)
+        self.endpoint_oks[url].append(msg)
+        self.logging.info(msg)
+
+    @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_hyperion(self, url, timeout):
         errors_found = False
         try:
@@ -370,12 +439,54 @@ class Checker:
 
     def run_checks(self):
         self.get_bpjson(timeout=self.chain_info['timeout'])
-        if self.bp_json:
-            for p2p in self.p2p_endpoints:
-                self.check_p2p(p2p, self.chain_info['timeout'])
-            for api in self.api_endpoints:
-                self.check_api(api, self.chain_info['chain_id'],
-                               self.chain_info['timeout'])
-                self.check_history(api, self.chain_info['timeout'])
-                self.check_hyperion(api, self.chain_info['timeout'])
-                self.check_patroneos(api, self.chain_info['timeout'])
+
+        if self.nodes:
+            for node in self.bp_json['nodes']:
+                if 'query' in node['node_type'] and 'features' in node:
+                    #Check API
+                    if 'chain-api' in node['features']:
+                        if 'api_endpoint' in node:
+                            self.check_api(node['api_endpoint'],
+                                           self.chain_info['chain_id'],
+                                           self.chain_info['timeout'])
+                            self.check_patroneos(node['api_endpoint'],
+                                                 self.chain_info['timeout'])
+                        if 'ssl_endpoint' in node:
+                            self.check_api(node['ssl_endpoint'],
+                                           self.chain_info['chain_id'],
+                                           self.chain_info['timeout'])
+                            self.check_patroneos(node['ssl_endpoint'],
+                                                 self.chain_info['timeout'])
+                    #Check Account Query
+                    if 'account-query' in node['features']:
+                        if 'api_endpoint' in node:
+                            self.check_account_query(
+                                node['api_endpoint'],
+                                self.chain_info['timeout'])
+                        if 'ssl_endpoint' in node:
+                            self.check_account_query(
+                                node['ssl_endpoint'],
+                                self.chain_info['timeout'])
+
+                    #Check History V1
+                    if 'history-v1' in node['features']:
+                        if 'api_endpoint' in node:
+                            self.check_history(node['api_endpoint'],
+                                               self.chain_info['timeout'])
+                        if 'ssl_endpoint' in node:
+                            self.check_history(node['ssl_endpoint'],
+                                               self.chain_info['timeout'])
+
+                    #Check Hyperion
+                    if 'hyperion-v2' in node['features']:
+                        if 'api_endpoint' in node:
+                            self.check_hyperion(node['api_endpoint'],
+                                                self.chain_info['timeout'])
+                        if 'ssl_endpoint' in node:
+                            self.check_hyperion(node['ssl_endpoint'],
+                                                self.chain_info['timeout'])
+
+                if 'seed' in node['node_type']:
+                    #Check P2P
+                    self.check_p2p(node['p2p_endpoint'],
+                                   self.chain_info['timeout'])

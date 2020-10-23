@@ -172,8 +172,8 @@ def main():
             continue
 
         for producer in producers:
-            # if producer['fio_address'] != 'bp@ledgerwise':
-            #     continue
+            if producer['owner'] != 'ledgerwiseio':
+                continue
             logging.info('Checking producer {}'.format(producer['owner']))
             checker = Checker(chain_info, producer, logging)
             checker.run_checks()
@@ -209,8 +209,8 @@ def main():
                 'warnings': checker.warnings,
                 'endpoint_errors': checker.endpoint_errors,
                 'endpoint_oks': checker.endpoint_oks,
-                'api_endpoints': checker.api_endpoints,
-                'p2p_endpoints': checker.p2p_endpoints,
+                # 'api_endpoints': checker.api_endpoints,
+                # 'p2p_endpoints': checker.p2p_endpoints,
                 'bp_json': checker.producer_info['bp_json_url']
             }
             if isFIO:
