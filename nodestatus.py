@@ -172,8 +172,8 @@ def main():
             continue
 
         for producer in producers:
-            if producer['owner'] != 'ledgerwiseio':
-                continue
+            # if producer['owner'] != 'ledgerwiseio':
+            #     continue
             logging.info('Checking producer {}'.format(producer['owner']))
             checker = Checker(chain_info, producer, logging)
             checker.run_checks()
