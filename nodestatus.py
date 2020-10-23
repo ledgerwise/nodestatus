@@ -209,7 +209,7 @@ def main():
                 'warnings': checker.warnings,
                 'endpoint_errors': checker.endpoint_errors,
                 'endpoint_oks': checker.endpoint_oks,
-                # 'api_endpoints': checker.api_endpoints,
+                'endpoints': checker.endpoints,
                 # 'p2p_endpoints': checker.p2p_endpoints,
                 'bp_json': checker.producer_info['bp_json_url']
             }

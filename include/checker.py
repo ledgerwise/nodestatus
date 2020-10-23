@@ -30,6 +30,7 @@ class Checker:
         self.healthy_history_endpoints = []
         self.healthy_hyperion_endpoints = []
         self.nodes = []
+        self.endpoints = []
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def get_producer_chainsjson_path(self, url, chain_id, timeout):
@@ -79,9 +80,8 @@ class Checker:
 
             if not 'github_user' in self.bp_json['org']:
                 msg = 'github_user missing in bp.json'
-                self.logging.critical(msg)
-                self.errors.append(msg)
-                self.status = 2
+                self.logging.warning(msg)
+                self.warnings.append(msg)
             else:
                 msg = 'github_user present in bp.json'
                 self.oks.append(msg)
@@ -110,21 +110,24 @@ class Checker:
                 if 'api_endpoint' in node:
                     self.endpoint_errors[node['api_endpoint']] = []
                     self.endpoint_oks[node['api_endpoint']] = []
+                    self.endpoints.append(node['api_endpoint'])
                 if 'ssl_endpoint' in node:
                     has_ssl_endpoints = True
                     self.endpoint_errors[node['ssl_endpoint']] = []
                     self.endpoint_oks[node['ssl_endpoint']] = []
+                    self.endpoints.append(node['ssl_endpoint'])
                 if 'p2p_endpoint' in node:
                     has_p2p_endpoints = True
                     self.endpoint_errors[node['p2p_endpoint']] = []
                     self.endpoint_oks[node['p2p_endpoint']] = []
+                    self.endpoints.append(node['p2p_endpoint'])
 
                 if 'features' in node:
                     if 'chain-api' in node['features']:
                         has_api_endpoints = True
 
                 self.nodes.append(node)
-
+            self.endpoints = list(set(self.endpoints))
             self.org_name = self.bp_json['org']['candidate_name']
 
             if not has_ssl_endpoints:
