@@ -125,8 +125,8 @@ class Checker:
                 if 'features' in node:
                     if 'chain-api' in node['features']:
                         has_api_endpoints = True
-
-                self.nodes.append(node)
+                if 'query' in node_type or 'seed' in node_type:
+                    self.nodes.append(node)
             self.endpoints = list(set(self.endpoints))
             self.org_name = self.bp_json['org']['candidate_name']
 
@@ -442,7 +442,6 @@ class Checker:
 
     def run_checks(self):
         self.get_bpjson(timeout=self.chain_info['timeout'])
-
         if self.nodes:
             for node in self.bp_json['nodes']:
                 if 'query' in node['node_type'] and 'features' in node:
