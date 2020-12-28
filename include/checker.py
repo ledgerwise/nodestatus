@@ -299,26 +299,26 @@ class Checker:
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_account_query(self, url, timeout):
         try:
-            key = "PUB_K1_7phQKVpvYY9UXx9EgRRY69PfDtoReSvJtTWKCwBzTzELZ2AwK3"
-            api_url = '{}/v1/history/get_key_accounts'.format(url.rstrip('/'))
+            account = "ledgerwiseio"
+            api_url = '{}/v1/chain/get_accounts_by_authorizers'.format(url.rstrip('/'))
             response = requests.post(api_url,
                                      json={
                                          'json': True,
-                                         'public_key': key
+                                         'accounts': [account,]
                                      },
                                      timeout=timeout)
             if response.status_code != 200:
                 print(response.content)
                 self.status = 2
-                msg = 'Error getting accounts for key {} from {}: {}'.format(
-                    key, api_url,
+                msg = 'Error getting authorizers for account {} from {}: {}'.format(
+                    account, api_url,
                     'Response error: {}'.format(response.status_code))
                 self.endpoint_errors[url].append(msg)
                 self.logging.critical(msg)
                 return
 
             else:
-                msg = 'Get accounts from key is ok on {}'.format(url)
+                msg = 'Get authorizers from account is ok on {}'.format(url)
                 self.endpoint_oks[url].append(msg)
                 self.logging.info(msg)
 
