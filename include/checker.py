@@ -440,7 +440,7 @@ class Checker:
             for reader in json['data']['postgres']['readers']:
                 last_indexed_block = max(last_indexed_block, int(reader['block_num']))
             if abs(last_indexed_block - head_block) > 5:
-                msg = 'last_indexed_block is behind than head_block'
+                msg = 'Atomic API last_indexed_block is behind than head_block'
                 self.logging.critical(msg)
                 self.endpoint_errors[url].append(msg)
                 self.status = 2
