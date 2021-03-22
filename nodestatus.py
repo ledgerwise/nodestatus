@@ -152,6 +152,7 @@ def main():
         healthy_p2p_endpoints = []
         healthy_history_endpoints = []
         healthy_hyperion_endpoints = []
+        healthy_atomic_endpoints = []
         producers_array = []
         testnet_producers = []
 
@@ -195,12 +196,14 @@ def main():
             healthy_p2p_endpoints += checker.healthy_p2p_endpoints
             healthy_history_endpoints += checker.healthy_history_endpoints
             healthy_hyperion_endpoints += checker.healthy_hyperion_endpoints
+            healthy_atomic_endpoints += checker.healthy_atomic_endpoints
 
             producer_info = {
                 'account': producer['owner'],
                 'org_name': checker.org_name,
                 'history': len(checker.healthy_history_endpoints),
                 'hyperion': len(checker.healthy_hyperion_endpoints),
+                'atomic': len(checker.healthy_atomic_endpoints),
                 'patroneos': checker.patroneos,
                 'position': checker.producer_info['position'],
                 'status': checker.status,
@@ -221,10 +224,14 @@ def main():
         healthy_api_endpoints = list(set(healthy_api_endpoints))
         healthy_p2p_endpoints = list(set(healthy_p2p_endpoints))
         healthy_history_endpoints = list(set(healthy_history_endpoints))
+        healthy_atomic_endpoints = list(set(healthy_atomic_endpoints))
+        healthy_hyperion_endpoints = list(set(healthy_hyperion_endpoints))
         random.shuffle(producers_array)
         random.shuffle(healthy_api_endpoints)
         random.shuffle(healthy_p2p_endpoints)
         random.shuffle(healthy_history_endpoints)
+        random.shuffle(healthy_atomic_endpoints)
+        random.shuffle(healthy_hyperion_endpoints)
 
         data = {
             'producers':
@@ -240,7 +247,9 @@ def main():
             'healthy_history_endpoints':
             healthy_history_endpoints,
             'healthy_hyperion_endpoints':
-            healthy_hyperion_endpoints
+            healthy_hyperion_endpoints,
+            'healthy_atomic_endpoints':
+            healthy_atomic_endpoints
         }
 
         PUB_PATH = '{}/pub'.format(SCRIPT_PATH)

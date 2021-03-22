@@ -29,6 +29,7 @@ class Checker:
         self.healthy_p2p_endpoints = []
         self.healthy_history_endpoints = []
         self.healthy_hyperion_endpoints = []
+        self.healthy_atomic_endpoints = []
         self.nodes = []
         self.endpoints = []
 
@@ -362,9 +363,10 @@ class Checker:
             health_url = '{}/v2/health'.format(url.rstrip('/'))
             response = requests.get(health_url, timeout=timeout)
             if response.status_code != 200:
+                msg = 'Error {} trying to check hyperion health endpoint'.format(
+                        response.status_code)
                 self.logging.info(
-                    'Error {} trying to check hyperion health endpoint'.format(
-                        response.status_code))
+                    msg)
                 self.endpoint_errors[url].append(msg)
                 self.status = 2
                 errors_found = True
@@ -404,6 +406,57 @@ class Checker:
             msg = 'Hyperion history ok for {}'.format(url)
             self.endpoint_oks[url].append(msg)
             self.logging.info(msg)
+
+    @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
+    def check_atomic(self, url, timeout):
+        errors_found = False
+        try:
+
+            #Check hyperion service health
+            health_url = '{}/health'.format(url.rstrip('/'))
+            response = requests.get(health_url, timeout=timeout)
+            if response.status_code != 200:
+                msg = 'Error {} trying to check atomic health endpoint'.format(
+                        response.status_code)
+                self.logging.info(
+                    msg)
+                self.endpoint_errors[url].append(msg)
+                self.status = 2
+                errors_found = True
+
+            json = response.json()
+            for item in json['data']:
+                if 'status' in item:
+                    if item['status'] != 'OK':
+                        msg = 'Atomic service {} has status {}'.format(
+                            item['service'], item['status'])
+                        self.logging.critical(msg)
+                        self.endpoint_errors[url].append(msg)
+                        self.status = 2
+                        errors_found = True
+            
+            head_block = json['data']['chain']['head_block']
+            last_indexed_block = 0
+            for reader in json['data']['postgres']['readers']:
+                last_indexed_block = max(last_indexed_block, int(reader['block_num']))
+            if abs(last_indexed_block - head_block) > 5:
+                msg = 'last_indexed_block is behind than head_block'
+                self.logging.critical(msg)
+                self.endpoint_errors[url].append(msg)
+                self.status = 2
+                errors_found = True
+
+        except Exception as e:
+            self.logging.error(
+                'Error getting atomic data from {}: {}'.format(url, e))
+            return
+
+        if not errors_found:
+            self.healthy_atomic_endpoints.append(url)
+            msg = 'Atomic API ok for {}'.format(url)
+            self.endpoint_oks[url].append(msg)
+            self.logging.info(msg)
+
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_patroneos(self, url, timeout):
@@ -487,6 +540,16 @@ class Checker:
                         if 'ssl_endpoint' in node:
                             self.check_hyperion(node['ssl_endpoint'],
                                                 self.chain_info['timeout'])
+
+                    #Check Hyperion
+                    if 'atomic-assets-api' in node['features']:
+                        if 'api_endpoint' in node:
+                            self.check_atomic(node['api_endpoint'],
+                                                self.chain_info['timeout'])
+                        if 'ssl_endpoint' in node:
+                            self.check_atomic(node['ssl_endpoint'],
+                                                self.chain_info['timeout'])
+                                                              
 
                 if 'seed' in node['node_type']:
                     #Check P2P
