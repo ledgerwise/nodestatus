@@ -43,14 +43,7 @@ args = parser.parse_args()
 VERBOSE = args.verbose
 DEBUG = args.debug
 LOG_FILE = args.log_file
-CHAINS = [{
-    'name': 'WAX',
-    'chain_id':
-    '1064487b3cd1a897ce03ae5b6a865651747e2e152090f99c1d19d44e01aea5a4',
-    'api_node': 'https://waxapi.eosmetal.io',
-    'testnet': False,
-    'limit': 50
-}]
+CHAINS = []
 
 if DEBUG:
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
