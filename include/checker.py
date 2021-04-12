@@ -397,8 +397,11 @@ class Checker:
                             errors_found = True
 
         except Exception as e:
-            self.logging.error(
-                'Error getting hyperion history from {}: {}'.format(url, e))
+            msg = 'Error getting hyperion history from {}: {}'.format(url, e)
+            self.logging.error(msg)
+            self.endpoint_errors[url].append(msg)
+            self.status = 2
+            errors_found = True
             return
 
         if not errors_found:
