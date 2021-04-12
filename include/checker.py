@@ -412,7 +412,7 @@ class Checker:
         errors_found = False
         try:
 
-            #Check hyperion service health
+            #Check atomic service health
             health_url = '{}/health'.format(url.rstrip('/'))
             response = requests.get(health_url, timeout=timeout)
             if response.status_code != 200:
@@ -447,8 +447,12 @@ class Checker:
                 errors_found = True
 
         except Exception as e:
-            self.logging.error(
-                'Error getting atomic data from {}: {}'.format(url, e))
+            msg = 'Error getting atomic data from {}: {}'.format(url, e)
+            self.logging.error(msg)
+            self.logging.critical(msg)
+            self.endpoint_errors[url].append(msg)
+            self.status = 2
+            errors_found = True
             return
 
         if not errors_found:
