@@ -370,6 +370,7 @@ class Checker:
                 self.endpoint_errors[url].append(msg)
                 self.status = 2
                 errors_found = True
+                return
 
             json = response.json()
             for item in json['health']:
@@ -426,6 +427,7 @@ class Checker:
                 self.endpoint_errors[url].append(msg)
                 self.status = 2
                 errors_found = True
+                return
 
             json = response.json()
             for item in json['data']:
