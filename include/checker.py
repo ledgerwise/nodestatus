@@ -391,7 +391,7 @@ class Checker:
                         total_indexed_blocks = item['service_data'][
                             'total_indexed_blocks']
                         if last_indexed_block != total_indexed_blocks:
-                            msg = 'Hyperion ElastiSearch last_indexed_block is different than total_indexed_blocks'
+                            msg = 'Hyperion ElastiSearch last_indexed_block ({}) is different than total_indexed_blocks ({})'.format(last_indexed_block, total_indexed_blocks)
                             self.logging.critical(msg)
                             self.endpoint_errors[url].append(msg)
                             self.status = 2
