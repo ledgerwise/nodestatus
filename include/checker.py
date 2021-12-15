@@ -324,14 +324,9 @@ class Checker:
                 self.logging.info(msg)
 
         except Exception as e:
-            msg = 'Error getting history from {}: {}'.format(url, e)
+            msg = 'Error getting authorizers from {}: {}'.format(url, e)
             self.logging.error(msg)
             return
-
-        self.healthy_history_endpoints.append(url)
-        msg = 'History ok for {}'.format(url)
-        self.endpoint_oks[url].append(msg)
-        self.logging.info(msg)
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_hyperion(self, url, timeout):
@@ -507,6 +502,7 @@ class Checker:
         if self.nodes:
             for node in self.bp_json['nodes']:
                 if 'query' in node['node_type'] and 'features' in node:
+                    print('>>>>>>>>',node['features'])
                     #Check API
                     if 'chain-api' in node['features']:
                         if 'api_endpoint' in node:
