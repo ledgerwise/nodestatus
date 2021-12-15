@@ -502,7 +502,6 @@ class Checker:
         if self.nodes:
             for node in self.bp_json['nodes']:
                 if 'query' in node['node_type'] and 'features' in node:
-                    print('>>>>>>>>',node['features'])
                     #Check API
                     if 'chain-api' in node['features']:
                         if 'api_endpoint' in node:
