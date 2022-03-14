@@ -14,6 +14,7 @@ pp = pprint.PrettyPrinter(indent=4)
 class Checker:
     def __init__(self, chain_info, producer, logging):
         self.chain_info = chain_info
+        self.wrong_chain_id = False
         self.logging = logging
         self.producer_info = producer
         self.org_name = self.producer_info['owner']
@@ -223,6 +224,15 @@ class Checker:
 
             info = response.json()
 
+            if info['chain_id'] != chain_id:
+                self.wrong_chain_id = True
+                self.status = 2
+                msg = 'Wrong chain id'
+                self.endpoint_errors[url].append(msg)
+                self.logging.critical(msg)
+                errors_found = True
+                return
+
             head_block_time = info['head_block_time']
             head_block_time_dt = datetime.datetime.strptime(
                 head_block_time, "%Y-%m-%dT%H:%M:%S.%f")
@@ -237,12 +247,7 @@ class Checker:
                 self.logging.critical(msg)
                 errors_found = True
 
-            if info['chain_id'] != chain_id:
-                self.status = 2
-                msg = 'Wrong chain id'
-                self.endpoint_errors[url].append(msg)
-                self.logging.critical(msg)
-                errors_found = True
+            
 
         except requests.exceptions.SSLError as e:
             self.status = 2
@@ -508,12 +513,16 @@ class Checker:
                             self.check_api(node['api_endpoint'],
                                            self.chain_info['chain_id'],
                                            self.chain_info['timeout'])
+                            if self.wrong_chain_id:
+                                return
                             self.check_patroneos(node['api_endpoint'],
                                                  self.chain_info['timeout'])
                         if 'ssl_endpoint' in node:
                             self.check_api(node['ssl_endpoint'],
                                            self.chain_info['chain_id'],
                                            self.chain_info['timeout'])
+                            if self.wrong_chain_id:
+                                return
                             self.check_patroneos(node['ssl_endpoint'],
                                                  self.chain_info['timeout'])
                     #Check Account Query
