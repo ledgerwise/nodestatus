@@ -476,7 +476,7 @@ class Checker:
                 'Accept': 'text/plain'
             }
             r = requests.post('{}/v1/chain/get_account'.format(url),
-                              data='{"account_name"="ledgerwiseio"}',
+                              data='{"account_name": "ledgerwiseio"}',
                               headers=headers,
                               timeout=timeout)
             r_json = r.json()
