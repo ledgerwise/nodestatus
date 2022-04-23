@@ -146,6 +146,7 @@ def main():
         healthy_history_endpoints = []
         healthy_hyperion_endpoints = []
         healthy_atomic_endpoints = []
+        healthy_ipfs_endpoints = []
         producers_array = []
         testnet_producers = []
 
@@ -166,8 +167,8 @@ def main():
             continue
 
         for producer in producers:
-            # if producer['owner'] != 'teamgreymass':
-            #     continue
+            if producer['owner'] != 'ledgerwiseio':
+                continue
             logging.info('Checking producer {}'.format(producer['owner']))
             checker = Checker(chain_info, producer, logging)
             checker.run_checks()
@@ -190,6 +191,7 @@ def main():
             healthy_history_endpoints += checker.healthy_history_endpoints
             healthy_hyperion_endpoints += checker.healthy_hyperion_endpoints
             healthy_atomic_endpoints += checker.healthy_atomic_endpoints
+            healthy_ipfs_endpoints += checker.healthy_ipfs_endpoints
 
             producer_info = {
                 'account': producer['owner'],
@@ -219,12 +221,14 @@ def main():
         healthy_history_endpoints = list(set(healthy_history_endpoints))
         healthy_atomic_endpoints = list(set(healthy_atomic_endpoints))
         healthy_hyperion_endpoints = list(set(healthy_hyperion_endpoints))
+        healthy_ipfs_endpoints = list(set(healthy_ipfs_endpoints))
         random.shuffle(producers_array)
         random.shuffle(healthy_api_endpoints)
         random.shuffle(healthy_p2p_endpoints)
         random.shuffle(healthy_history_endpoints)
         random.shuffle(healthy_atomic_endpoints)
         random.shuffle(healthy_hyperion_endpoints)
+        random.shuffle(healthy_ipfs_endpoints)
 
         data = {
             'producers':
@@ -242,7 +246,10 @@ def main():
             'healthy_hyperion_endpoints':
             healthy_hyperion_endpoints,
             'healthy_atomic_endpoints':
-            healthy_atomic_endpoints
+            healthy_atomic_endpoints,
+            'healthy_ipfs_endpoints':
+            healthy_ipfs_endpoints
+
         }
 
         PUB_PATH = '{}/pub'.format(SCRIPT_PATH)

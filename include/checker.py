@@ -31,6 +31,8 @@ class Checker:
         self.healthy_history_endpoints = []
         self.healthy_hyperion_endpoints = []
         self.healthy_atomic_endpoints = []
+        self.healthy_ipfs_endpoints = []
+        self.ipfs_errors = []
         self.nodes = []
         self.endpoints = []
 
@@ -502,6 +504,32 @@ class Checker:
         self.endpoint_oks[url].append(msg)
         self.logging.info(msg)
 
+    @retry(stop=stop_after_attempt(1), wait=wait_fixed(3), reraise=True)
+    def check_ipfs(self, url, timeout):
+        try:
+            api_url = f'{url}/ipfs/QmWnfdZkwWJxabDUbimrtaweYF8u9TaESDBM8xvRxxbQxv'            
+            response = requests.get(api_url, timeout=timeout)
+            if response.status_code != 200:
+                self.status = 2
+                msg = 'Error getting ipfs image from {}: {}'.format(
+                    api_url,
+                    'Response error: {}'.format(response.status_code))
+                
+                self.ipfs_errors[url].append(msg)
+                self.logging.critical(msg)
+                return
+
+            else:
+                msg = 'IPFS is ok on {}'.format(url)
+                self.endpoint_oks[url].append(msg)
+                self.healthy_ipfs_endpoints.append(url)
+                self.logging.info(msg)
+
+        except Exception as e:
+            msg = 'Error getting ipfs image from {}: {}'.format(url, e)
+            self.logging.error(msg)
+            return
+
     def run_checks(self):
         self.get_bpjson(timeout=self.chain_info['timeout'])
         if self.nodes:
@@ -561,6 +589,15 @@ class Checker:
                                                 self.chain_info['timeout'])
                         if 'ssl_endpoint' in node:
                             self.check_atomic(node['ssl_endpoint'],
+                                                self.chain_info['timeout'])
+                    
+                    #Check IPFS
+                    if 'ipfs' in node['features']:
+                        if 'api_endpoint' in node:
+                            self.check_ipfs(node['api_endpoint'],
+                                                self.chain_info['timeout'])
+                        if 'ssl_endpoint' in node:
+                            self.check_ipfs(node['ssl_endpoint'],
                                                 self.chain_info['timeout'])
                                                               
 
