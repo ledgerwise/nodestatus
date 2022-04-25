@@ -295,8 +295,10 @@ class Checker:
                 return
 
         except Exception as e:
-            msg = 'Error getting history from {}: {}'.format(url, e)
+            msg = 'Error testing v1 history from {}: {}'.format(url, e)
             self.logging.error(msg)
+            self.endpoint_errors[url].append(msg)
+            self.status = 2
             return
 
         self.healthy_history_endpoints.append(url)
@@ -346,6 +348,9 @@ class Checker:
             if response.status_code != 200:
                 self.logging.info('No hyperion found ({})'.format(
                     response.status_code))
+                self.endpoint_errors[url].append(f'Error {response.status_code} testing hyperion')
+                self.status = 2
+                errors_found = True
                 return
 
             json = response.json()
