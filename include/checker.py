@@ -7,9 +7,10 @@ import dateutil.parser
 from urllib.parse import urljoin
 from tenacity import retry, stop_after_attempt, wait_fixed
 import pprint
+import time
 
 pp = pprint.PrettyPrinter(indent=4)
-
+DELAY = 0.3
 
 class Checker:
     def __init__(self, chain_info, producer, logging):
@@ -38,6 +39,7 @@ class Checker:
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def get_producer_chainsjson_path(self, url, chain_id, timeout):
+        time.sleep(DELAY)
         try:
             chains_json_content = requests.get(url, timeout=timeout).json()
             return chains_json_content['chains'][chain_id]
@@ -48,6 +50,7 @@ class Checker:
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def get_bpjson(self, timeout):
+        time.sleep(DELAY)
         has_ssl_endpoints = False
         has_p2p_endpoints = False
         has_api_endpoints = False
@@ -170,6 +173,7 @@ class Checker:
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2))
     def check_p2p(self, url, timeout):
+        time.sleep(DELAY)
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.settimeout(timeout)
@@ -200,6 +204,7 @@ class Checker:
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def check_api(self, url, chain_id, timeout):
+        time.sleep(DELAY)
         errors_found = False
         try:
             api_url = '{}/v1/chain/get_info'.format(url.rstrip('/'))
@@ -282,6 +287,7 @@ class Checker:
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_history(self, url, timeout):
+        time.sleep(DELAY)
         try:
             history_url = url.rstrip('/')
             cleos = eospy.cleos.Cleos(url=history_url)
@@ -308,6 +314,7 @@ class Checker:
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_account_query(self, url, timeout):
+        time.sleep(DELAY)
         try:
             account = "ledgerwiseio"
             api_url = '{}/v1/chain/get_accounts_by_authorizers'.format(url.rstrip('/'))
@@ -339,6 +346,7 @@ class Checker:
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_hyperion(self, url, timeout):
+        time.sleep(DELAY)
         errors_found = False
         try:
             #Check last hyperion indexed action
@@ -420,6 +428,7 @@ class Checker:
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_atomic(self, url, timeout):
+        time.sleep(DELAY)
         errors_found = False
         try:
 
@@ -476,6 +485,7 @@ class Checker:
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
     def check_patroneos(self, url, timeout):
+        time.sleep(DELAY)
         try:
             url = url.rstrip('/')
             headers = {
@@ -511,6 +521,7 @@ class Checker:
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(3), reraise=True)
     def check_ipfs(self, url, timeout):
+        time.sleep(DELAY)
         try:
             api_url = f'{url}/ipfs/QmWnfdZkwWJxabDUbimrtaweYF8u9TaESDBM8xvRxxbQxv'            
             response = requests.get(api_url, timeout=timeout)
