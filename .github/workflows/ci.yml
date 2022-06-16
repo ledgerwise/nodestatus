@@ -29,6 +29,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nodestatus:${{ GITHUB_SHA }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nodestatus:${{ github.sha }}
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/nodestatus:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/nodestatus:buildcache,mode=max
