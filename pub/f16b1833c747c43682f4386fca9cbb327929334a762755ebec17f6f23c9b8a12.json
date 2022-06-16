@@ -1,0 +1,2087 @@
+{
+    "healthy_api_endpoints": [
+        "https://waxtest.defibox.xyz",
+        "http://testnet.waxsweden.org",
+        "https://testnet.wax.detroitledger.tech",
+        "http://wax-testnet-hyperion.neftyblocks.com",
+        "https://hyperion-test.hivebp.io",
+        "http://wax-testnet.dapplica.io",
+        "http://waxtest.eoseoul.io",
+        "https://api.waxtest.alohaeos.com",
+        "https://api.wax-test.bountyblok.io",
+        "http://wax-testnet.eosphere.io",
+        "https://hyperion-wax-testnet.wecan.dev",
+        "http://wax-testnet-history.neftyblocks.com",
+        "https://testnet.wax.eosrio.io",
+        "http://hyperion-wax-testnet.wecan.dev",
+        "https://wax-testnet.eosphere.io",
+        "http://waxtest.defibox.xyz",
+        "https://wax-testnet.dapplica.io",
+        "http://hyperion-test.oiac.io",
+        "http://testnet-wax.3dkrender.com",
+        "https://testnet.waxsweden.org",
+        "https://wax-public-testnet.neftyblocks.com",
+        "https://testnet.wax.pink.gg",
+        "https://testnet.wax.eosdetroit.io",
+        "http://waxtestnet.ledgerwise.io",
+        "https://wax-testnet.edenia.cloud",
+        "https://api-testnet-wax.eosarabia.net",
+        "http://hyperion-test.hivebp.io",
+        "http://waxtest.api.eosnation.io",
+        "http://waxtest.eosdac.io",
+        "https://waxtest.api.eosnation.io",
+        "https://wax-testnet-history.neftyblocks.com",
+        "https://waxtestnet.ledgerwise.io",
+        "https://api-wax-testnet.wecan.dev",
+        "https://wax-testnet-hyperion.neftyblocks.com",
+        "http://api.waxtest.alohaeos.com",
+        "http://api.waxtest.waxgalaxy.io",
+        "https://wax-testnet-hyperion.eosiomadrid.io",
+        "http://wax-testnet-hyperion.eosiomadrid.io",
+        "http://api-test.hivebp.io",
+        "https://waxtest.eosdac.io",
+        "http://api-wax-testnet.wecan.dev",
+        "https://wax-testnet.genereos.io",
+        "http://wax-test.blokcrafters.io",
+        "http://testnet.wax.eosdetroit.io",
+        "http://testnet.wax.eosrio.io",
+        "http://api-testnet-wax.eosarabia.net",
+        "http://api.wax-test.bountyblok.io",
+        "http://testnet.wax.detroitledger.tech",
+        "https://testnet-wax.3dkrender.com",
+        "http://wax-testnet.genereos.io",
+        "https://wax-test.blokcrafters.io",
+        "https://waxtest.eoseoul.io",
+        "https://api-test.hivebp.io",
+        "https://hyperion-test.oiac.io",
+        "https://api.waxtest.waxgalaxy.io",
+        "http://wax-public-testnet.neftyblocks.com",
+        "http://testnet.wax.pink.gg"
+    ],
+    "healthy_atomic_endpoints": [
+        "http://atomic-test.oiac.io/",
+        "http://atomic.testnet.wax.detroitledger.tech",
+        "https://test.wax.api.atomicassets.io",
+        "http://atomic-wax-testnet.wecan.dev",
+        "https://wax-test.blokcrafters.io",
+        "http://testatomic.3dkrender.com",
+        "https://atomic.testnet.wax.detroitledger.tech",
+        "https://atomic-wax-testnet.wecan.dev",
+        "http://test.wax.api.atomicassets.io",
+        "http://wax-test.blokcrafters.io",
+        "https://waxtest-aa.eosdac.io",
+        "http://waxtest-aa.eosdac.io",
+        "https://atomic-test.oiac.io/",
+        "https://testatomic.3dkrender.com"
+    ],
+    "healthy_history_endpoints": [
+        "http://wax-testnet-history.neftyblocks.com",
+        "http://waxtestnet.ledgerwise.io",
+        "https://waxtest.defibox.xyz",
+        "https://api.waxtest.waxgalaxy.io",
+        "http://testnet.waxsweden.org",
+        "https://wax-testnet.dapplica.io",
+        "https://testnet.waxsweden.org",
+        "http://testnet-wax.3dkrender.com",
+        "http://waxtest.defibox.xyz",
+        "https://hyperion-test.oiac.io",
+        "http://wax-testnet.eosphere.io",
+        "https://wax-testnet-history.neftyblocks.com",
+        "http://api-testnet-wax.eosarabia.net",
+        "https://testnet.wax.detroitledger.tech",
+        "https://wax-testnet-hyperion.eosiomadrid.io",
+        "http://testnet.wax.eosdetroit.io",
+        "https://testnet.wax.eosdetroit.io",
+        "https://testnet-wax.3dkrender.com",
+        "http://wax-test.blokcrafters.io",
+        "https://wax-test.blokcrafters.io",
+        "https://waxtestnet.ledgerwise.io",
+        "http://testnet.wax.pink.gg",
+        "https://wax-testnet.eosphere.io",
+        "http://api.waxtest.waxgalaxy.io",
+        "https://hyperion-wax-testnet.wecan.dev",
+        "http://waxtest.eosdac.io",
+        "https://waxtest.eosdac.io",
+        "https://testnet.wax.pink.gg",
+        "https://api-testnet-wax.eosarabia.net",
+        "http://wax-testnet-hyperion.eosiomadrid.io",
+        "http://hyperion-test.oiac.io",
+        "https://hyperion-test.hivebp.io",
+        "http://testnet.wax.detroitledger.tech",
+        "http://hyperion-wax-testnet.wecan.dev",
+        "http://wax-testnet.dapplica.io"
+    ],
+    "healthy_hyperion_endpoints": [
+        "http://wax-testnet.eosphere.io",
+        "http://hyperion-wax-testnet.wecan.dev",
+        "http://hyperion-test.oiac.io",
+        "https://wax-testnet-hyperion.eosiomadrid.io",
+        "http://testnet.wax.pink.gg",
+        "http://hyperion-test.hivebp.io",
+        "http://wax-testnet-hyperion.neftyblocks.com",
+        "https://waxtest.eosdac.io",
+        "http://api.waxtest.waxgalaxy.io",
+        "http://wax-testnet.dapplica.io",
+        "https://waxtestnet.ledgerwise.io",
+        "http://api-testnet-wax.eosarabia.net",
+        "https://api-testnet-wax.eosarabia.net",
+        "https://wax-test.blokcrafters.io",
+        "https://testnet.wax.pink.gg",
+        "https://wax-testnet-hyperion.neftyblocks.com",
+        "https://api.waxtest.waxgalaxy.io",
+        "http://testnet.waxsweden.org",
+        "https://hyperion-wax-testnet.wecan.dev",
+        "https://hyperion-test.oiac.io",
+        "http://wax-testnet-hyperion.eosiomadrid.io",
+        "http://waxtest.eosdac.io",
+        "https://testnet.waxsweden.org",
+        "https://hyperion-test.hivebp.io",
+        "https://wax-testnet.eosphere.io",
+        "http://wax-test.blokcrafters.io",
+        "http://waxtestnet.ledgerwise.io",
+        "https://wax-testnet.dapplica.io"
+    ],
+    "healthy_ipfs_endpoints": [],
+    "healthy_p2p_endpoints": [
+        "peer-test.hivebp.io:9876",
+        "waxtest-peer-eu.blokcrafters.io:19876",
+        "p2p.testnet.waxeastern.cn:9876",
+        "p2p.wax-test.bountyblok.io:9874",
+        "seed1-wax-testnet.wecan.dev:9876",
+        "waxtest.seed.eosnation.io:9876",
+        "waxtest-p2p.eosdac.io:49876",
+        "testnet-p2p.3dkrender.com:9876",
+        "wax-testnet.dapplica.io:9876",
+        "p2p.testnet.waxsweden.org:59676",
+        "p2p-testnet-wax.eosarabia.net:9876",
+        "p2p.waxtest.waxgalaxy.io:9878",
+        "peer1-wax-testnet.genereos.io:9876",
+        "peer1-wax-testnet.eosphere.io:9876",
+        "seed2-wax-testnet.wecan.dev:9876",
+        "wax-seed-testnet.eosiomadrid.io:9876",
+        "p2p.eossweden.eu:7002",
+        "p2p-testnet.neftyblocks.com:19876",
+        "p2ptest.oiac.io:10877",
+        "p2p.testnet.wax.detroitledger.tech:1337",
+        "waxtest-peer-us.blokcrafters.io:19876",
+        "peer1.testnet.wax.pink.gg:16714",
+        "waxtest.defibox.xyz:9876",
+        "138.201.23.118:9877",
+        "peer.waxtest.alohaeos.com:9876"
+    ],
+    "last_update": "16/06/22 12:21:06 UTC",
+    "last_update_iso": "2022-06-16T12:21:06.368752",
+    "producers": [
+        {
+            "account": "eosdacserver",
+            "atomic": 2,
+            "bp_json": "https://eosdac.io/waxtest.json",
+            "endpoint_errors": {
+                "http://waxtest-aa.eosdac.io": [],
+                "http://waxtest.eosdac.io": [],
+                "https://waxtest-aa.eosdac.io": [],
+                "https://waxtest.eosdac.io": [],
+                "waxtest-p2p.eosdac.io:49876": []
+            },
+            "endpoint_oks": {
+                "http://waxtest-aa.eosdac.io": [
+                    "Atomic API ok for http://waxtest-aa.eosdac.io"
+                ],
+                "http://waxtest.eosdac.io": [
+                    "CORS headers properly configured",
+                    "API node http://waxtest.eosdac.io is responding correctly",
+                    "Get authorizers from account is ok on http://waxtest.eosdac.io",
+                    "History ok for http://waxtest.eosdac.io",
+                    "Hyperion history ok for http://waxtest.eosdac.io"
+                ],
+                "https://waxtest-aa.eosdac.io": [
+                    "Atomic API ok for https://waxtest-aa.eosdac.io"
+                ],
+                "https://waxtest.eosdac.io": [
+                    "CORS headers properly configured",
+                    "API node https://waxtest.eosdac.io is responding correctly",
+                    "Get authorizers from account is ok on https://waxtest.eosdac.io",
+                    "History ok for https://waxtest.eosdac.io",
+                    "Hyperion history ok for https://waxtest.eosdac.io"
+                ],
+                "waxtest-p2p.eosdac.io:49876": [
+                    "P2P node waxtest-p2p.eosdac.io:49876 is responding"
+                ]
+            },
+            "endpoints": [
+                "http://waxtest-aa.eosdac.io",
+                "https://waxtest.eosdac.io",
+                "https://waxtest-aa.eosdac.io",
+                "waxtest-p2p.eosdac.io:49876",
+                "http://waxtest.eosdac.io"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "eosDAC",
+            "patroneos": 0,
+            "position": 24,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "waxhiveguild",
+            "atomic": 0,
+            "bp_json": "https://hivebp.io/test.json",
+            "endpoint_errors": {
+                "": [],
+                "http://api-test.hivebp.io": [],
+                "http://hyperion-test.hivebp.io": [
+                    "Error testing v1 history from http://hyperion-test.hivebp.io: Error: {'message': 'Route GET:/v1/history/get_actions not found', 'error': 'Not Found', 'statusCode': 404}"
+                ],
+                "https://api-test.hivebp.io": [],
+                "https://hyperion-test.hivebp.io": [],
+                "peer-test.hivebp.io:9876": []
+            },
+            "endpoint_oks": {
+                "": [],
+                "http://api-test.hivebp.io": [
+                    "CORS headers properly configured",
+                    "API node http://api-test.hivebp.io is responding correctly",
+                    "Get authorizers from account is ok on http://api-test.hivebp.io"
+                ],
+                "http://hyperion-test.hivebp.io": [
+                    "CORS headers properly configured",
+                    "API node http://hyperion-test.hivebp.io is responding correctly",
+                    "Hyperion history ok for http://hyperion-test.hivebp.io"
+                ],
+                "https://api-test.hivebp.io": [
+                    "CORS headers properly configured",
+                    "API node https://api-test.hivebp.io is responding correctly",
+                    "Get authorizers from account is ok on https://api-test.hivebp.io"
+                ],
+                "https://hyperion-test.hivebp.io": [
+                    "CORS headers properly configured",
+                    "API node https://hyperion-test.hivebp.io is responding correctly",
+                    "History ok for https://hyperion-test.hivebp.io",
+                    "Hyperion history ok for https://hyperion-test.hivebp.io"
+                ],
+                "peer-test.hivebp.io:9876": [
+                    "P2P node peer-test.hivebp.io:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "",
+                "https://hyperion-test.hivebp.io",
+                "http://hyperion-test.hivebp.io",
+                "https://api-test.hivebp.io",
+                "peer-test.hivebp.io:9876",
+                "http://api-test.hivebp.io"
+            ],
+            "errors": [],
+            "history": 1,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "Hive BP",
+            "patroneos": 0,
+            "position": 29,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "wecan",
+            "atomic": 2,
+            "bp_json": "https://wecan.dev/waxtest.json",
+            "endpoint_errors": {
+                "http://api-wax-testnet.wecan.dev": [],
+                "http://atomic-wax-testnet.wecan.dev": [],
+                "http://hyperion-wax-testnet.wecan.dev": [],
+                "https://api-wax-testnet.wecan.dev": [],
+                "https://atomic-wax-testnet.wecan.dev": [],
+                "https://hyperion-wax-testnet.wecan.dev": [],
+                "seed1-wax-testnet.wecan.dev:9876": [],
+                "seed2-wax-testnet.wecan.dev:9876": []
+            },
+            "endpoint_oks": {
+                "http://api-wax-testnet.wecan.dev": [
+                    "CORS headers properly configured",
+                    "API node http://api-wax-testnet.wecan.dev is responding correctly",
+                    "Get authorizers from account is ok on http://api-wax-testnet.wecan.dev"
+                ],
+                "http://atomic-wax-testnet.wecan.dev": [
+                    "Atomic API ok for http://atomic-wax-testnet.wecan.dev"
+                ],
+                "http://hyperion-wax-testnet.wecan.dev": [
+                    "CORS headers properly configured",
+                    "API node http://hyperion-wax-testnet.wecan.dev is responding correctly",
+                    "Get authorizers from account is ok on http://hyperion-wax-testnet.wecan.dev",
+                    "History ok for http://hyperion-wax-testnet.wecan.dev",
+                    "Hyperion history ok for http://hyperion-wax-testnet.wecan.dev"
+                ],
+                "https://api-wax-testnet.wecan.dev": [
+                    "CORS headers properly configured",
+                    "API node https://api-wax-testnet.wecan.dev is responding correctly",
+                    "Get authorizers from account is ok on https://api-wax-testnet.wecan.dev"
+                ],
+                "https://atomic-wax-testnet.wecan.dev": [
+                    "Atomic API ok for https://atomic-wax-testnet.wecan.dev"
+                ],
+                "https://hyperion-wax-testnet.wecan.dev": [
+                    "CORS headers properly configured",
+                    "API node https://hyperion-wax-testnet.wecan.dev is responding correctly",
+                    "Get authorizers from account is ok on https://hyperion-wax-testnet.wecan.dev",
+                    "History ok for https://hyperion-wax-testnet.wecan.dev",
+                    "Hyperion history ok for https://hyperion-wax-testnet.wecan.dev"
+                ],
+                "seed1-wax-testnet.wecan.dev:9876": [
+                    "P2P node seed1-wax-testnet.wecan.dev:9876 is responding"
+                ],
+                "seed2-wax-testnet.wecan.dev:9876": [
+                    "P2P node seed2-wax-testnet.wecan.dev:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "seed1-wax-testnet.wecan.dev:9876",
+                "https://api-wax-testnet.wecan.dev",
+                "https://hyperion-wax-testnet.wecan.dev",
+                "http://atomic-wax-testnet.wecan.dev",
+                "seed2-wax-testnet.wecan.dev:9876",
+                "http://api-wax-testnet.wecan.dev",
+                "http://hyperion-wax-testnet.wecan.dev",
+                "https://atomic-wax-testnet.wecan.dev"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "WeCan",
+            "patroneos": 0,
+            "position": 9,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "blokcrafters",
+            "atomic": 2,
+            "bp_json": "https://testnet.blokcrafters.com/waxtest.json",
+            "endpoint_errors": {
+                "http://wax-test.blokcrafters.io": [],
+                "https://wax-test.blokcrafters.io": [],
+                "waxtest-peer-eu.blokcrafters.io:19876": [],
+                "waxtest-peer-us.blokcrafters.io:19876": []
+            },
+            "endpoint_oks": {
+                "http://wax-test.blokcrafters.io": [
+                    "CORS headers properly configured",
+                    "API node http://wax-test.blokcrafters.io is responding correctly",
+                    "Get authorizers from account is ok on http://wax-test.blokcrafters.io",
+                    "History ok for http://wax-test.blokcrafters.io",
+                    "Hyperion history ok for http://wax-test.blokcrafters.io",
+                    "Atomic API ok for http://wax-test.blokcrafters.io"
+                ],
+                "https://wax-test.blokcrafters.io": [
+                    "CORS headers properly configured",
+                    "API node https://wax-test.blokcrafters.io is responding correctly",
+                    "Get authorizers from account is ok on https://wax-test.blokcrafters.io",
+                    "History ok for https://wax-test.blokcrafters.io",
+                    "Hyperion history ok for https://wax-test.blokcrafters.io",
+                    "Atomic API ok for https://wax-test.blokcrafters.io"
+                ],
+                "waxtest-peer-eu.blokcrafters.io:19876": [
+                    "P2P node waxtest-peer-eu.blokcrafters.io:19876 is responding"
+                ],
+                "waxtest-peer-us.blokcrafters.io:19876": [
+                    "P2P node waxtest-peer-us.blokcrafters.io:19876 is responding"
+                ]
+            },
+            "endpoints": [
+                "waxtest-peer-us.blokcrafters.io:19876",
+                "http://wax-test.blokcrafters.io",
+                "https://wax-test.blokcrafters.io",
+                "waxtest-peer-eu.blokcrafters.io:19876"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "BlokCrafters",
+            "patroneos": 0,
+            "position": 4,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "csxcommunity",
+            "atomic": 0,
+            "bp_json": "https://waxtest.csx.io/bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting csxcommunity bp.json (https://waxtest.csx.io/bp.json): HTTPSConnectionPool(host='waxtest.csx.io', port=443): Max retries exceeded with url: /bp.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x104b3f8b0>, 'Connection to waxtest.csx.io timed out. (connect timeout=3)')) <class 'requests.exceptions.ConnectTimeout'>"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "csxcommunity",
+            "patroneos": 0,
+            "position": 28,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "tokengamerio",
+            "atomic": 0,
+            "bp_json": "https://tgg.gg/bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting tokengamerio bp.json (https://tgg.gg/bp.json): Certificate error"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "tokengamerio",
+            "patroneos": 0,
+            "position": 17,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "eoscannonwax",
+            "atomic": 0,
+            "bp_json": "https://eoscannon.io/bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting eoscannonwax bp.json (https://eoscannon.io/bp.json): Certificate error"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "eoscannonwax",
+            "patroneos": 0,
+            "position": 40,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "eosphereiobp",
+            "atomic": 0,
+            "bp_json": "https://www.eosphere.io/waxtestnet/bp.json",
+            "endpoint_errors": {
+                "http://wax-testnet.eosphere.io": [],
+                "https://wax-testnet.eosphere.io": [],
+                "peer1-wax-testnet.eosphere.io:9876": []
+            },
+            "endpoint_oks": {
+                "http://wax-testnet.eosphere.io": [
+                    "CORS headers properly configured",
+                    "API node http://wax-testnet.eosphere.io is responding correctly",
+                    "Get authorizers from account is ok on http://wax-testnet.eosphere.io",
+                    "History ok for http://wax-testnet.eosphere.io",
+                    "Hyperion history ok for http://wax-testnet.eosphere.io"
+                ],
+                "https://wax-testnet.eosphere.io": [
+                    "CORS headers properly configured",
+                    "API node https://wax-testnet.eosphere.io is responding correctly",
+                    "Get authorizers from account is ok on https://wax-testnet.eosphere.io",
+                    "History ok for https://wax-testnet.eosphere.io",
+                    "Hyperion history ok for https://wax-testnet.eosphere.io"
+                ],
+                "peer1-wax-testnet.eosphere.io:9876": [
+                    "P2P node peer1-wax-testnet.eosphere.io:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "peer1-wax-testnet.eosphere.io:9876",
+                "https://wax-testnet.eosphere.io",
+                "http://wax-testnet.eosphere.io"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [],
+            "org_name": "EOSphere Guild",
+            "patroneos": 0,
+            "position": 3,
+            "status": 0,
+            "warnings": [
+                "github_user missing in bp.json"
+            ]
+        },
+        {
+            "account": "waxnodetest1",
+            "atomic": 0,
+            "bp_json": "http:///bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting waxnodetest1 bp.json (http:///bp.json): Invalid URL 'http:///bp.json': No host supplied <class 'requests.exceptions.InvalidURL'>"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "waxnodetest1",
+            "patroneos": 0,
+            "position": 38,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "cypherglasss",
+            "atomic": 0,
+            "bp_json": "https://bp.cypherglass.com/bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting bp.json: 404 - <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 .."
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "cypherglasss",
+            "patroneos": 0,
+            "position": 35,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "waxwobdotorg",
+            "atomic": 0,
+            "bp_json": "http:///bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting waxwobdotorg bp.json (http:///bp.json): Invalid URL 'http:///bp.json': No host supplied <class 'requests.exceptions.InvalidURL'>"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "waxwobdotorg",
+            "patroneos": 0,
+            "position": 48,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "bountyblokbp",
+            "atomic": 0,
+            "bp_json": "https://www.bountyblok.io/test.json",
+            "endpoint_errors": {
+                "": [],
+                "http://api.wax-test.bountyblok.io": [],
+                "https://api.wax-test.bountyblok.io": [],
+                "p2p.wax-test.bountyblok.io:9874": []
+            },
+            "endpoint_oks": {
+                "": [],
+                "http://api.wax-test.bountyblok.io": [
+                    "CORS headers properly configured",
+                    "API node http://api.wax-test.bountyblok.io is responding correctly"
+                ],
+                "https://api.wax-test.bountyblok.io": [
+                    "CORS headers properly configured",
+                    "API node https://api.wax-test.bountyblok.io is responding correctly"
+                ],
+                "p2p.wax-test.bountyblok.io:9874": [
+                    "P2P node p2p.wax-test.bountyblok.io:9874 is responding"
+                ]
+            },
+            "endpoints": [
+                "",
+                "http://api.wax-test.bountyblok.io",
+                "p2p.wax-test.bountyblok.io:9874",
+                "https://api.wax-test.bountyblok.io"
+            ],
+            "errors": [],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "bountyblok.io",
+            "patroneos": 0,
+            "position": 16,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "genereos.wax",
+            "atomic": 0,
+            "bp_json": "https://genereos.io/wax/bp-testnet.json",
+            "endpoint_errors": {
+                "http://wax-testnet.genereos.io": [],
+                "https://wax-testnet.genereos.io": [],
+                "peer1-wax-testnet.genereos.io:9876": []
+            },
+            "endpoint_oks": {
+                "http://wax-testnet.genereos.io": [
+                    "CORS headers properly configured",
+                    "API node http://wax-testnet.genereos.io is responding correctly",
+                    "Get authorizers from account is ok on http://wax-testnet.genereos.io"
+                ],
+                "https://wax-testnet.genereos.io": [
+                    "CORS headers properly configured",
+                    "API node https://wax-testnet.genereos.io is responding correctly",
+                    "Get authorizers from account is ok on https://wax-testnet.genereos.io"
+                ],
+                "peer1-wax-testnet.genereos.io:9876": [
+                    "P2P node peer1-wax-testnet.genereos.io:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "peer1-wax-testnet.genereos.io:9876",
+                "http://wax-testnet.genereos.io",
+                "https://wax-testnet.genereos.io"
+            ],
+            "errors": [],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "GenerEOS",
+            "patroneos": 0,
+            "position": 20,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "waxswedenorg",
+            "atomic": 0,
+            "bp_json": "https://waxsweden.org/test.json",
+            "endpoint_errors": {
+                "http://testnet.waxsweden.org": [],
+                "https://testnet.waxsweden.org": [],
+                "p2p.testnet.waxsweden.org:59676": []
+            },
+            "endpoint_oks": {
+                "http://testnet.waxsweden.org": [
+                    "CORS headers properly configured",
+                    "API node http://testnet.waxsweden.org is responding correctly",
+                    "History ok for http://testnet.waxsweden.org",
+                    "Hyperion history ok for http://testnet.waxsweden.org"
+                ],
+                "https://testnet.waxsweden.org": [
+                    "CORS headers properly configured",
+                    "API node https://testnet.waxsweden.org is responding correctly",
+                    "History ok for https://testnet.waxsweden.org",
+                    "Hyperion history ok for https://testnet.waxsweden.org"
+                ],
+                "p2p.testnet.waxsweden.org:59676": [
+                    "P2P node p2p.testnet.waxsweden.org:59676 is responding"
+                ]
+            },
+            "endpoints": [
+                "http://testnet.waxsweden.org",
+                "https://testnet.waxsweden.org",
+                "p2p.testnet.waxsweden.org:59676"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "Sw/eden\ud83c\udf3f",
+            "patroneos": 0,
+            "position": 23,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "edeniaedenia",
+            "atomic": 0,
+            "bp_json": "https://edenia.com/wax-testnet.json",
+            "endpoint_errors": {
+                "https://wax-testnet.edenia.cloud": [
+                    "Error getting authorizers for account ledgerwiseio from https://wax-testnet.edenia.cloud/v1/chain/get_accounts_by_authorizers: Response error: 404"
+                ],
+                "wax-testnet.edenia.cloud:9880": [
+                    "Error connecting to wax-testnet.edenia.cloud:9880"
+                ]
+            },
+            "endpoint_oks": {
+                "https://wax-testnet.edenia.cloud": [
+                    "CORS headers properly configured",
+                    "API node https://wax-testnet.edenia.cloud is responding correctly"
+                ],
+                "wax-testnet.edenia.cloud:9880": []
+            },
+            "endpoints": [
+                "https://wax-testnet.edenia.cloud",
+                "wax-testnet.edenia.cloud:9880"
+            ],
+            "errors": [],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "Edenia",
+            "patroneos": 0,
+            "position": 45,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "eosriobrazil",
+            "atomic": 0,
+            "bp_json": "https://eosrio.io/wax-test.json",
+            "endpoint_errors": {
+                "http://testnet.wax.eosrio.io": [],
+                "https://testnet.wax.eosrio.io": []
+            },
+            "endpoint_oks": {
+                "http://testnet.wax.eosrio.io": [
+                    "CORS headers properly configured",
+                    "API node http://testnet.wax.eosrio.io is responding correctly"
+                ],
+                "https://testnet.wax.eosrio.io": [
+                    "CORS headers properly configured",
+                    "API node https://testnet.wax.eosrio.io is responding correctly"
+                ]
+            },
+            "endpoints": [
+                "http://testnet.wax.eosrio.io",
+                "https://testnet.wax.eosrio.io"
+            ],
+            "errors": [
+                "No P2P nodes defined (p2p_endpoint)"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "EOS Rio \ud83d\udc99 ",
+            "patroneos": 0,
+            "position": 5,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "bp.rland",
+            "atomic": 0,
+            "bp_json": "https://gift.land/bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting bp.json: 404 - <!DOCTYPE html>\n<html lang=\"en\">\n\t<head>\n\t\t<meta charset=\"utf-8\" />\n\t\t<link.."
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "bp.rland",
+            "patroneos": 0,
+            "position": 44,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "rland",
+            "atomic": 0,
+            "bp_json": "https://gift.land/bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting bp.json: 404 - <!DOCTYPE html>\n<html lang=\"en\">\n\t<head>\n\t\t<meta charset=\"utf-8\" />\n\t\t<link.."
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "rland",
+            "patroneos": 0,
+            "position": 51,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "hkeosguildhk",
+            "atomic": 0,
+            "bp_json": "https://www.hkeos.com/bp.json",
+            "endpoint_errors": {
+                "": []
+            },
+            "endpoint_oks": {
+                "": []
+            },
+            "endpoints": [
+                ""
+            ],
+            "errors": [
+                "features not present for node 2 of type query",
+                "No chain api nodes defined"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "hkeos",
+            "patroneos": 0,
+            "position": 25,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "nation.wax",
+            "atomic": 0,
+            "bp_json": "https://eosnation.io/waxtest.json",
+            "endpoint_errors": {
+                "http://waxtest.api.eosnation.io": [],
+                "https://waxtest.api.eosnation.io": [],
+                "waxtest.seed.eosnation.io:9876": []
+            },
+            "endpoint_oks": {
+                "http://waxtest.api.eosnation.io": [
+                    "CORS headers properly configured",
+                    "API node http://waxtest.api.eosnation.io is responding correctly",
+                    "Get authorizers from account is ok on http://waxtest.api.eosnation.io"
+                ],
+                "https://waxtest.api.eosnation.io": [
+                    "CORS headers properly configured",
+                    "API node https://waxtest.api.eosnation.io is responding correctly",
+                    "Get authorizers from account is ok on https://waxtest.api.eosnation.io"
+                ],
+                "waxtest.seed.eosnation.io:9876": [
+                    "P2P node waxtest.seed.eosnation.io:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "waxtest.seed.eosnation.io:9876",
+                "http://waxtest.api.eosnation.io",
+                "https://waxtest.api.eosnation.io"
+            ],
+            "errors": [],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "EOS Nation",
+            "patroneos": 0,
+            "position": 15,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "pink.gg",
+            "atomic": 2,
+            "bp_json": "https://pink.gg/wax-testnet.json",
+            "endpoint_errors": {
+                "http://test.wax.api.atomicassets.io": [],
+                "http://testnet.wax.pink.gg": [],
+                "https://test.wax.api.atomicassets.io": [],
+                "https://testnet.wax.pink.gg": [],
+                "peer1.testnet.wax.pink.gg:16714": []
+            },
+            "endpoint_oks": {
+                "http://test.wax.api.atomicassets.io": [
+                    "Atomic API ok for http://test.wax.api.atomicassets.io"
+                ],
+                "http://testnet.wax.pink.gg": [
+                    "CORS headers properly configured",
+                    "API node http://testnet.wax.pink.gg is responding correctly",
+                    "Get authorizers from account is ok on http://testnet.wax.pink.gg",
+                    "History ok for http://testnet.wax.pink.gg",
+                    "Hyperion history ok for http://testnet.wax.pink.gg"
+                ],
+                "https://test.wax.api.atomicassets.io": [
+                    "Atomic API ok for https://test.wax.api.atomicassets.io"
+                ],
+                "https://testnet.wax.pink.gg": [
+                    "CORS headers properly configured",
+                    "API node https://testnet.wax.pink.gg is responding correctly",
+                    "Get authorizers from account is ok on https://testnet.wax.pink.gg",
+                    "History ok for https://testnet.wax.pink.gg",
+                    "Hyperion history ok for https://testnet.wax.pink.gg"
+                ],
+                "peer1.testnet.wax.pink.gg:16714": [
+                    "P2P node peer1.testnet.wax.pink.gg:16714 is responding"
+                ]
+            },
+            "endpoints": [
+                "https://testnet.wax.pink.gg",
+                "http://test.wax.api.atomicassets.io",
+                "https://test.wax.api.atomicassets.io",
+                "http://testnet.wax.pink.gg",
+                "peer1.testnet.wax.pink.gg:16714"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "pink.gg",
+            "patroneos": 0,
+            "position": 42,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "momtestnet11",
+            "atomic": 0,
+            "bp_json": "https://milliononmars.io/bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting bp.json: 404 - <!DOCTYPE html><html><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" con.."
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "momtestnet11",
+            "patroneos": 0,
+            "position": 39,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "ledgerwiseio",
+            "atomic": 0,
+            "bp_json": "https://ledgerwise.io/wax/testnet/bp.json",
+            "endpoint_errors": {
+                "http://waxtestnet.ledgerwise.io": [],
+                "https://waxtestnet.ledgerwise.io": [],
+                "waxp2ptestnet.ledgerwise.io:20876": [
+                    "Error connecting to waxp2ptestnet.ledgerwise.io:20876"
+                ]
+            },
+            "endpoint_oks": {
+                "http://waxtestnet.ledgerwise.io": [
+                    "CORS headers properly configured",
+                    "API node http://waxtestnet.ledgerwise.io is responding correctly",
+                    "History ok for http://waxtestnet.ledgerwise.io",
+                    "Hyperion history ok for http://waxtestnet.ledgerwise.io"
+                ],
+                "https://waxtestnet.ledgerwise.io": [
+                    "CORS headers properly configured",
+                    "API node https://waxtestnet.ledgerwise.io is responding correctly",
+                    "History ok for https://waxtestnet.ledgerwise.io",
+                    "Hyperion history ok for https://waxtestnet.ledgerwise.io"
+                ],
+                "waxp2ptestnet.ledgerwise.io:20876": []
+            },
+            "endpoints": [
+                "waxp2ptestnet.ledgerwise.io:20876",
+                "https://waxtestnet.ledgerwise.io",
+                "http://waxtestnet.ledgerwise.io"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "LedgerWise",
+            "patroneos": 0,
+            "position": 7,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "alohaeosprod",
+            "atomic": 0,
+            "bp_json": "https://www.alohaeos.com/waxtest.json",
+            "endpoint_errors": {
+                "http://api.waxtest.alohaeos.com": [
+                    "Error getting authorizers for account ledgerwiseio from http://api.waxtest.alohaeos.com/v1/chain/get_accounts_by_authorizers: Response error: 404"
+                ],
+                "https://api.waxtest.alohaeos.com": [
+                    "Error getting authorizers for account ledgerwiseio from https://api.waxtest.alohaeos.com/v1/chain/get_accounts_by_authorizers: Response error: 404"
+                ],
+                "peer.waxtest.alohaeos.com:9876": []
+            },
+            "endpoint_oks": {
+                "http://api.waxtest.alohaeos.com": [
+                    "CORS headers properly configured",
+                    "API node http://api.waxtest.alohaeos.com is responding correctly"
+                ],
+                "https://api.waxtest.alohaeos.com": [
+                    "CORS headers properly configured",
+                    "API node https://api.waxtest.alohaeos.com is responding correctly"
+                ],
+                "peer.waxtest.alohaeos.com:9876": [
+                    "P2P node peer.waxtest.alohaeos.com:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "http://api.waxtest.alohaeos.com",
+                "https://api.waxtest.alohaeos.com",
+                "peer.waxtest.alohaeos.com:9876"
+            ],
+            "errors": [],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "Aloha EOS",
+            "patroneos": 0,
+            "position": 21,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "bp.box",
+            "atomic": 0,
+            "bp_json": "https://wax.defibox.io/waxtest.json",
+            "endpoint_errors": {
+                "http://waxtest.defibox.xyz": [],
+                "https://waxtest.defibox.xyz": [],
+                "waxtest.defibox.xyz:9876": []
+            },
+            "endpoint_oks": {
+                "http://waxtest.defibox.xyz": [
+                    "CORS headers properly configured",
+                    "API node http://waxtest.defibox.xyz is responding correctly",
+                    "Get authorizers from account is ok on http://waxtest.defibox.xyz",
+                    "History ok for http://waxtest.defibox.xyz"
+                ],
+                "https://waxtest.defibox.xyz": [
+                    "CORS headers properly configured",
+                    "API node https://waxtest.defibox.xyz is responding correctly",
+                    "Get authorizers from account is ok on https://waxtest.defibox.xyz",
+                    "History ok for https://waxtest.defibox.xyz"
+                ],
+                "waxtest.defibox.xyz:9876": [
+                    "P2P node waxtest.defibox.xyz:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "waxtest.defibox.xyz:9876",
+                "https://waxtest.defibox.xyz",
+                "http://waxtest.defibox.xyz"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "Defibox BP",
+            "patroneos": 0,
+            "position": 19,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "eosiodetroit",
+            "atomic": 2,
+            "bp_json": "https://eosdetroit.io/chains/wax/testnet/bp.json",
+            "endpoint_errors": {
+                "": [],
+                "http://atomic.testnet.wax.detroitledger.tech": [],
+                "http://hyperion.testnet.wax.detroitledger.tech": [
+                    "Hyperion ElastiSearch last_indexed_block (159005707) is different than total_indexed_blocks (159005061)"
+                ],
+                "http://testnet.wax.detroitledger.tech": [],
+                "http://testnet.wax.eosdetroit.io": [],
+                "https://atomic.testnet.wax.detroitledger.tech": [],
+                "https://hyperion.testnet.wax.detroitledger.tech": [
+                    "Hyperion ElastiSearch last_indexed_block (159005711) is different than total_indexed_blocks (159005065)"
+                ],
+                "https://testnet.wax.detroitledger.tech": [],
+                "https://testnet.wax.eosdetroit.io": [],
+                "p2p.testnet.wax.detroitledger.tech:1337": []
+            },
+            "endpoint_oks": {
+                "": [],
+                "http://atomic.testnet.wax.detroitledger.tech": [
+                    "Atomic API ok for http://atomic.testnet.wax.detroitledger.tech"
+                ],
+                "http://hyperion.testnet.wax.detroitledger.tech": [],
+                "http://testnet.wax.detroitledger.tech": [
+                    "CORS headers properly configured",
+                    "API node http://testnet.wax.detroitledger.tech is responding correctly",
+                    "History ok for http://testnet.wax.detroitledger.tech"
+                ],
+                "http://testnet.wax.eosdetroit.io": [
+                    "CORS headers properly configured",
+                    "API node http://testnet.wax.eosdetroit.io is responding correctly",
+                    "History ok for http://testnet.wax.eosdetroit.io"
+                ],
+                "https://atomic.testnet.wax.detroitledger.tech": [
+                    "Atomic API ok for https://atomic.testnet.wax.detroitledger.tech"
+                ],
+                "https://hyperion.testnet.wax.detroitledger.tech": [],
+                "https://testnet.wax.detroitledger.tech": [
+                    "CORS headers properly configured",
+                    "API node https://testnet.wax.detroitledger.tech is responding correctly",
+                    "History ok for https://testnet.wax.detroitledger.tech"
+                ],
+                "https://testnet.wax.eosdetroit.io": [
+                    "CORS headers properly configured",
+                    "API node https://testnet.wax.eosdetroit.io is responding correctly",
+                    "History ok for https://testnet.wax.eosdetroit.io"
+                ],
+                "p2p.testnet.wax.detroitledger.tech:1337": [
+                    "P2P node p2p.testnet.wax.detroitledger.tech:1337 is responding"
+                ]
+            },
+            "endpoints": [
+                "",
+                "https://atomic.testnet.wax.detroitledger.tech",
+                "http://atomic.testnet.wax.detroitledger.tech",
+                "http://hyperion.testnet.wax.detroitledger.tech",
+                "p2p.testnet.wax.detroitledger.tech:1337",
+                "http://testnet.wax.detroitledger.tech",
+                "http://testnet.wax.eosdetroit.io",
+                "https://testnet.wax.detroitledger.tech",
+                "https://testnet.wax.eosdetroit.io",
+                "https://hyperion.testnet.wax.detroitledger.tech"
+            ],
+            "errors": [],
+            "history": 4,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "EOS DETROIT",
+            "patroneos": 0,
+            "position": 10,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "wax.eastern",
+            "atomic": 0,
+            "bp_json": "http://waxeastern.cn/testnet.json",
+            "endpoint_errors": {
+                "http://api.testnet.waxeastern.cn": [],
+                "https://api.testnet.waxeastern.cn": [],
+                "p2p.testnet.waxeastern.cn:9876": []
+            },
+            "endpoint_oks": {
+                "http://api.testnet.waxeastern.cn": [],
+                "https://api.testnet.waxeastern.cn": [],
+                "p2p.testnet.waxeastern.cn:9876": [
+                    "P2P node p2p.testnet.waxeastern.cn:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "http://api.testnet.waxeastern.cn",
+                "p2p.testnet.waxeastern.cn:9876",
+                "https://api.testnet.waxeastern.cn"
+            ],
+            "errors": [
+                "No chain api nodes defined"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "WAX.Eastern",
+            "patroneos": 0,
+            "position": 14,
+            "status": 2,
+            "warnings": [
+                "github_user missing in bp.json"
+            ]
+        },
+        {
+            "account": "eoseouldotio",
+            "atomic": 0,
+            "bp_json": "https://eoseoul.io/waxtest.json",
+            "endpoint_errors": {
+                "61.35.89.227:29876": [
+                    "Error connecting to 61.35.89.227:29876"
+                ],
+                "http://waxtest.eoseoul.io": [],
+                "https://waxtest.eoseoul.io": []
+            },
+            "endpoint_oks": {
+                "61.35.89.227:29876": [],
+                "http://waxtest.eoseoul.io": [
+                    "CORS headers properly configured",
+                    "API node http://waxtest.eoseoul.io is responding correctly"
+                ],
+                "https://waxtest.eoseoul.io": [
+                    "CORS headers properly configured",
+                    "API node https://waxtest.eoseoul.io is responding correctly"
+                ]
+            },
+            "endpoints": [
+                "https://waxtest.eoseoul.io",
+                "61.35.89.227:29876",
+                "http://waxtest.eoseoul.io"
+            ],
+            "errors": [],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "EOSeoul",
+            "patroneos": 0,
+            "position": 22,
+            "status": 2,
+            "warnings": [
+                "github_user missing in bp.json"
+            ]
+        },
+        {
+            "account": "waxtribetest",
+            "atomic": 0,
+            "bp_json": "https://cryptotribe.io/bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting bp.json: 404 - <html>\r\n<head><title>404 Not Found</title></head>\r\n<body>\r\n<center><h1>404 .."
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "waxtribetest",
+            "patroneos": 0,
+            "position": 47,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "cryptolions1",
+            "atomic": 0,
+            "bp_json": "https://cryptolions.io/wax-testnet.json",
+            "endpoint_errors": {
+                "http://wax-testnet.cryptolions.io": [
+                    "Wrong chain id"
+                ],
+                "https://wax-testnet.cryptolions.io": [],
+                "wax-testnet.cryptolions.io:7987": []
+            },
+            "endpoint_oks": {
+                "http://wax-testnet.cryptolions.io": [
+                    "CORS headers properly configured"
+                ],
+                "https://wax-testnet.cryptolions.io": [],
+                "wax-testnet.cryptolions.io:7987": []
+            },
+            "endpoints": [
+                "https://wax-testnet.cryptolions.io",
+                "http://wax-testnet.cryptolions.io",
+                "wax-testnet.cryptolions.io:7987"
+            ],
+            "errors": [],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "CryptoLions\ud83e\udd81",
+            "patroneos": 0,
+            "position": 41,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "swedencornet",
+            "atomic": 0,
+            "bp_json": "https://eossweden.eu/bp.json",
+            "endpoint_errors": {
+                "http://api.eossweden.eu": [
+                    "Error connecting to http://api.eossweden.eu: <class 'type'> HTTPConnectionPool(host='api.eossweden.eu', port=80): Max retries exceeded with url: /v1/chain/get_info (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x104c34400>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))"
+                ],
+                "https://api.eossweden.eu": [
+                    "Error connecting to https://api.eossweden.eu: <class 'type'> HTTPSConnectionPool(host='api.eossweden.eu', port=443): Max retries exceeded with url: /v1/chain/get_info (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x104c347c0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))"
+                ],
+                "p2p.eossweden.eu:7002": [
+                    "Error connecting to p2p.eossweden.eu:7002: [Errno 8] nodename nor servname provided, or not known"
+                ]
+            },
+            "endpoint_oks": {
+                "http://api.eossweden.eu": [],
+                "https://api.eossweden.eu": [],
+                "p2p.eossweden.eu:7002": [
+                    "P2P node p2p.eossweden.eu:7002 is responding"
+                ]
+            },
+            "endpoints": [
+                "p2p.eossweden.eu:7002",
+                "https://api.eossweden.eu",
+                "http://api.eossweden.eu"
+            ],
+            "errors": [],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "EOS/Telos Sweden (Core Net)",
+            "patroneos": 0,
+            "position": 37,
+            "status": 2,
+            "warnings": [
+                "github_user missing in bp.json"
+            ]
+        },
+        {
+            "account": "eosdublinwax",
+            "atomic": 0,
+            "bp_json": "https://eosdublin.com/wax-testnet.json",
+            "endpoint_errors": {
+                "http://wax.testnet.eosdublin.io": [],
+                "https://wax.testnet.eosdublin.io": [],
+                "wax.testnet.eosdublin.io:9876": [
+                    "Error connecting to wax.testnet.eosdublin.io:9876"
+                ]
+            },
+            "endpoint_oks": {
+                "http://wax.testnet.eosdublin.io": [],
+                "https://wax.testnet.eosdublin.io": [],
+                "wax.testnet.eosdublin.io:9876": []
+            },
+            "endpoints": [
+                "http://wax.testnet.eosdublin.io",
+                "https://wax.testnet.eosdublin.io",
+                "wax.testnet.eosdublin.io:9876"
+            ],
+            "errors": [
+                "No chain api nodes defined"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "eosDublin",
+            "patroneos": 0,
+            "position": 11,
+            "status": 2,
+            "warnings": [
+                "github_user missing in bp.json"
+            ]
+        },
+        {
+            "account": "wizardsguild",
+            "atomic": 0,
+            "bp_json": "https://wizardsguild.one/bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting bp.json: 403 - <!DOCTYPE html>\n<html lang=\"en-US\">\n   <head>\n      <title>Access denied</t.."
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "wizardsguild",
+            "patroneos": 0,
+            "position": 2,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "sentnlagents",
+            "atomic": 0,
+            "bp_json": "https://www.sentnl.io/waxtest.json",
+            "endpoint_errors": {
+                "waxtest.sentnl.io:9877": [
+                    "Error connecting to waxtest.sentnl.io:9877"
+                ]
+            },
+            "endpoint_oks": {
+                "waxtest.sentnl.io:9877": []
+            },
+            "endpoints": [
+                "waxtest.sentnl.io:9877"
+            ],
+            "errors": [
+                "No SSL api nodes defined (ssl_endpoint)",
+                "No chain api nodes defined"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "Sentnl",
+            "patroneos": 0,
+            "position": 13,
+            "status": 2,
+            "warnings": [
+                "github_user missing in bp.json"
+            ]
+        },
+        {
+            "account": "blocksmithio",
+            "atomic": 0,
+            "bp_json": "http://eosblocksmith.io/waxtest.json",
+            "endpoint_errors": {
+                "http://wax-testnet.eosblocksmith.io": [],
+                "https://wax-testnet.eosblocksmith.io": [],
+                "peer.wax-testnet.eosblocksmith.io:5081": [
+                    "Error connecting to peer.wax-testnet.eosblocksmith.io:5081"
+                ]
+            },
+            "endpoint_oks": {
+                "http://wax-testnet.eosblocksmith.io": [],
+                "https://wax-testnet.eosblocksmith.io": [],
+                "peer.wax-testnet.eosblocksmith.io:5081": []
+            },
+            "endpoints": [
+                "peer.wax-testnet.eosblocksmith.io:5081",
+                "https://wax-testnet.eosblocksmith.io",
+                "http://wax-testnet.eosblocksmith.io"
+            ],
+            "errors": [
+                "No chain api nodes defined"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "EOS BlockSmith",
+            "patroneos": 0,
+            "position": 50,
+            "status": 2,
+            "warnings": [
+                "github_user missing in bp.json"
+            ]
+        },
+        {
+            "account": "oneinacilian",
+            "atomic": 2,
+            "bp_json": "https://www.oiac.io/waxtest.json",
+            "endpoint_errors": {
+                "http://atomic-test.oiac.io/": [],
+                "http://hyperion-test.oiac.io": [],
+                "https://atomic-test.oiac.io/": [],
+                "https://hyperion-test.oiac.io": [],
+                "p2ptest.oiac.io:10877": []
+            },
+            "endpoint_oks": {
+                "http://atomic-test.oiac.io/": [
+                    "Atomic API ok for http://atomic-test.oiac.io/"
+                ],
+                "http://hyperion-test.oiac.io": [
+                    "CORS headers properly configured",
+                    "API node http://hyperion-test.oiac.io is responding correctly",
+                    "History ok for http://hyperion-test.oiac.io",
+                    "Hyperion history ok for http://hyperion-test.oiac.io"
+                ],
+                "https://atomic-test.oiac.io/": [
+                    "Atomic API ok for https://atomic-test.oiac.io/"
+                ],
+                "https://hyperion-test.oiac.io": [
+                    "CORS headers properly configured",
+                    "API node https://hyperion-test.oiac.io is responding correctly",
+                    "History ok for https://hyperion-test.oiac.io",
+                    "Hyperion history ok for https://hyperion-test.oiac.io"
+                ],
+                "p2ptest.oiac.io:10877": [
+                    "P2P node p2ptest.oiac.io:10877 is responding"
+                ]
+            },
+            "endpoints": [
+                "http://atomic-test.oiac.io/",
+                "http://hyperion-test.oiac.io",
+                "https://atomic-test.oiac.io/",
+                "https://hyperion-test.oiac.io",
+                "p2ptest.oiac.io:10877"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "OIAC",
+            "patroneos": 0,
+            "position": 12,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "dapplicawaxt",
+            "atomic": 0,
+            "bp_json": "https://dapplica.io/wax-testnet.json",
+            "endpoint_errors": {
+                "http://wax-testnet.dapplica.io": [],
+                "https://wax-testnet.dapplica.io": [],
+                "wax-testnet.dapplica.io:9876": []
+            },
+            "endpoint_oks": {
+                "http://wax-testnet.dapplica.io": [
+                    "CORS headers properly configured",
+                    "API node http://wax-testnet.dapplica.io is responding correctly",
+                    "Get authorizers from account is ok on http://wax-testnet.dapplica.io",
+                    "History ok for http://wax-testnet.dapplica.io",
+                    "Hyperion history ok for http://wax-testnet.dapplica.io"
+                ],
+                "https://wax-testnet.dapplica.io": [
+                    "CORS headers properly configured",
+                    "API node https://wax-testnet.dapplica.io is responding correctly",
+                    "Get authorizers from account is ok on https://wax-testnet.dapplica.io",
+                    "History ok for https://wax-testnet.dapplica.io",
+                    "Hyperion history ok for https://wax-testnet.dapplica.io"
+                ],
+                "wax-testnet.dapplica.io:9876": [
+                    "P2P node wax-testnet.dapplica.io:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "http://wax-testnet.dapplica.io",
+                "wax-testnet.dapplica.io:9876",
+                "https://wax-testnet.dapplica.io"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "dapplica",
+            "patroneos": 0,
+            "position": 49,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "waxmadrid111",
+            "atomic": 0,
+            "bp_json": "http://eosiomadrid.io/wax/testnet/wax.json",
+            "endpoint_errors": {
+                "http://wax-testnet-hyperion.eosiomadrid.io": [],
+                "https://wax-testnet-hyperion.eosiomadrid.io": [],
+                "wax-seed-testnet.eosiomadrid.io:9876": []
+            },
+            "endpoint_oks": {
+                "http://wax-testnet-hyperion.eosiomadrid.io": [
+                    "CORS headers properly configured",
+                    "API node http://wax-testnet-hyperion.eosiomadrid.io is responding correctly",
+                    "History ok for http://wax-testnet-hyperion.eosiomadrid.io",
+                    "Hyperion history ok for http://wax-testnet-hyperion.eosiomadrid.io"
+                ],
+                "https://wax-testnet-hyperion.eosiomadrid.io": [
+                    "CORS headers properly configured",
+                    "API node https://wax-testnet-hyperion.eosiomadrid.io is responding correctly",
+                    "History ok for https://wax-testnet-hyperion.eosiomadrid.io",
+                    "Hyperion history ok for https://wax-testnet-hyperion.eosiomadrid.io"
+                ],
+                "wax-seed-testnet.eosiomadrid.io:9876": [
+                    "P2P node wax-seed-testnet.eosiomadrid.io:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "https://wax-testnet-hyperion.eosiomadrid.io",
+                "http://wax-testnet-hyperion.eosiomadrid.io",
+                "wax-seed-testnet.eosiomadrid.io:9876"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "Wax Madrid",
+            "patroneos": 0,
+            "position": 36,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "guitarmining",
+            "atomic": 0,
+            "bp_json": "https://pplbresource.com/bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting guitarmining bp.json (https://pplbresource.com/bp.json): HTTPSConnectionPool(host='pplbresource.com', port=443): Max retries exceeded with url: /bp.json (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x104c34f70>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known')) <class 'requests.exceptions.ConnectionError'>"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "guitarmining",
+            "patroneos": 0,
+            "position": 32,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "amsterdamwax",
+            "atomic": 0,
+            "bp_json": "https://wax.eosamsterdam.net/bp.json",
+            "endpoint_errors": {
+                "http://wax.eu.eosamsterdam.net": [
+                    "Wrong chain id"
+                ],
+                "https://wax-aa.eu.eosamsterdam.net": [],
+                "https://wax.eu.eosamsterdam.net": [],
+                "wax.eu.eosamsterdam.net:9101": [],
+                "waxp2p.us.eosamsterdam.net:9101": []
+            },
+            "endpoint_oks": {
+                "http://wax.eu.eosamsterdam.net": [
+                    "CORS headers properly configured"
+                ],
+                "https://wax-aa.eu.eosamsterdam.net": [],
+                "https://wax.eu.eosamsterdam.net": [],
+                "wax.eu.eosamsterdam.net:9101": [],
+                "waxp2p.us.eosamsterdam.net:9101": []
+            },
+            "endpoints": [
+                "http://wax.eu.eosamsterdam.net",
+                "https://wax.eu.eosamsterdam.net",
+                "wax.eu.eosamsterdam.net:9101",
+                "https://wax-aa.eu.eosamsterdam.net",
+                "waxp2p.us.eosamsterdam.net:9101"
+            ],
+            "errors": [],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "EOSAmsterdam",
+            "patroneos": 0,
+            "position": 26,
+            "status": 2,
+            "warnings": [
+                "github_user missing in bp.json"
+            ]
+        },
+        {
+            "account": "producertest",
+            "atomic": 0,
+            "bp_json": "http:///bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting producertest bp.json (http:///bp.json): Invalid URL 'http:///bp.json': No host supplied <class 'requests.exceptions.InvalidURL'>"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "producertest",
+            "patroneos": 0,
+            "position": 46,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "waxxpoblocks",
+            "atomic": 0,
+            "bp_json": "https://xpoblocks.com/bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting waxxpoblocks bp.json (https://xpoblocks.com/bp.json): HTTPSConnectionPool(host='xpoblocks.com', port=443): Max retries exceeded with url: /bp.json (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x104c34fd0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known')) <class 'requests.exceptions.ConnectionError'>"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "waxxpoblocks",
+            "patroneos": 0,
+            "position": 43,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "liquidgaming",
+            "atomic": 0,
+            "bp_json": "https://liquiid.io/wax-test.json",
+            "endpoint_errors": {
+                "138.201.23.118:9877": []
+            },
+            "endpoint_oks": {
+                "138.201.23.118:9877": [
+                    "P2P node 138.201.23.118:9877 is responding"
+                ]
+            },
+            "endpoints": [
+                "138.201.23.118:9877"
+            ],
+            "errors": [
+                "No SSL api nodes defined (ssl_endpoint)",
+                "No chain api nodes defined"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "LiquidGaming",
+            "patroneos": 0,
+            "position": 8,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "waxnodeonebp",
+            "atomic": 0,
+            "bp_json": "https://www.nodeone.io/wax_test.json",
+            "endpoint_errors": {
+                "": []
+            },
+            "endpoint_oks": {
+                "": []
+            },
+            "endpoints": [
+                ""
+            ],
+            "errors": [
+                "features not present for node 2 of type query",
+                "No chain api nodes defined"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "nodeONE\u261d\ufe0f",
+            "patroneos": 0,
+            "position": 31,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "eosarabianet",
+            "atomic": 0,
+            "bp_json": "https://uae.eosarabia.net/waxtest.json",
+            "endpoint_errors": {
+                "http://api-testnet-wax.eosarabia.net": [],
+                "https://api-testnet-wax.eosarabia.net": [],
+                "p2p-testnet-wax.eosarabia.net:9876": []
+            },
+            "endpoint_oks": {
+                "http://api-testnet-wax.eosarabia.net": [
+                    "CORS headers properly configured",
+                    "API node http://api-testnet-wax.eosarabia.net is responding correctly",
+                    "Get authorizers from account is ok on http://api-testnet-wax.eosarabia.net",
+                    "History ok for http://api-testnet-wax.eosarabia.net",
+                    "Hyperion history ok for http://api-testnet-wax.eosarabia.net"
+                ],
+                "https://api-testnet-wax.eosarabia.net": [
+                    "CORS headers properly configured",
+                    "API node https://api-testnet-wax.eosarabia.net is responding correctly",
+                    "Get authorizers from account is ok on https://api-testnet-wax.eosarabia.net",
+                    "History ok for https://api-testnet-wax.eosarabia.net",
+                    "Hyperion history ok for https://api-testnet-wax.eosarabia.net"
+                ],
+                "p2p-testnet-wax.eosarabia.net:9876": [
+                    "P2P node p2p-testnet-wax.eosarabia.net:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "http://api-testnet-wax.eosarabia.net",
+                "https://api-testnet-wax.eosarabia.net",
+                "p2p-testnet-wax.eosarabia.net:9876"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "EOSArabia",
+            "patroneos": 0,
+            "position": 6,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "waxcafeblock",
+            "atomic": 0,
+            "bp_json": "https://www.eoscafeblock.com/bp.json",
+            "endpoint_errors": {
+                "http://eos.eoscafeblock.com": [],
+                "https://eos.eoscafeblock.com": [],
+                "p2p.eoscafeblock.com:9000": [
+                    "Error connecting to p2p.eoscafeblock.com:9000"
+                ]
+            },
+            "endpoint_oks": {
+                "http://eos.eoscafeblock.com": [],
+                "https://eos.eoscafeblock.com": [],
+                "p2p.eoscafeblock.com:9000": []
+            },
+            "endpoints": [
+                "https://eos.eoscafeblock.com",
+                "p2p.eoscafeblock.com:9000",
+                "http://eos.eoscafeblock.com"
+            ],
+            "errors": [
+                "No chain api nodes defined"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "EOS Cafe Block",
+            "patroneos": 0,
+            "position": 30,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "guild.nefty",
+            "atomic": 0,
+            "bp_json": "https://bp.neftyblocks.com/waxtest.json",
+            "endpoint_errors": {
+                "": [],
+                "http://wax-public-testnet.neftyblocks.com": [],
+                "http://wax-testnet-history.neftyblocks.com": [],
+                "http://wax-testnet-hyperion.neftyblocks.com": [],
+                "https://wax-public-testnet.neftyblocks.com": [],
+                "https://wax-testnet-history.neftyblocks.com": [],
+                "https://wax-testnet-hyperion.neftyblocks.com": [],
+                "p2p-testnet.neftyblocks.com:19876": []
+            },
+            "endpoint_oks": {
+                "": [],
+                "http://wax-public-testnet.neftyblocks.com": [
+                    "CORS headers properly configured",
+                    "API node http://wax-public-testnet.neftyblocks.com is responding correctly",
+                    "Get authorizers from account is ok on http://wax-public-testnet.neftyblocks.com"
+                ],
+                "http://wax-testnet-history.neftyblocks.com": [
+                    "CORS headers properly configured",
+                    "API node http://wax-testnet-history.neftyblocks.com is responding correctly",
+                    "History ok for http://wax-testnet-history.neftyblocks.com"
+                ],
+                "http://wax-testnet-hyperion.neftyblocks.com": [
+                    "CORS headers properly configured",
+                    "API node http://wax-testnet-hyperion.neftyblocks.com is responding correctly",
+                    "Hyperion history ok for http://wax-testnet-hyperion.neftyblocks.com"
+                ],
+                "https://wax-public-testnet.neftyblocks.com": [
+                    "CORS headers properly configured",
+                    "API node https://wax-public-testnet.neftyblocks.com is responding correctly",
+                    "Get authorizers from account is ok on https://wax-public-testnet.neftyblocks.com"
+                ],
+                "https://wax-testnet-history.neftyblocks.com": [
+                    "CORS headers properly configured",
+                    "API node https://wax-testnet-history.neftyblocks.com is responding correctly",
+                    "History ok for https://wax-testnet-history.neftyblocks.com"
+                ],
+                "https://wax-testnet-hyperion.neftyblocks.com": [
+                    "CORS headers properly configured",
+                    "API node https://wax-testnet-hyperion.neftyblocks.com is responding correctly",
+                    "Hyperion history ok for https://wax-testnet-hyperion.neftyblocks.com"
+                ],
+                "p2p-testnet.neftyblocks.com:19876": [
+                    "P2P node p2p-testnet.neftyblocks.com:19876 is responding"
+                ]
+            },
+            "endpoints": [
+                "",
+                "https://wax-testnet-hyperion.neftyblocks.com",
+                "http://wax-testnet-hyperion.neftyblocks.com",
+                "https://wax-public-testnet.neftyblocks.com",
+                "http://wax-public-testnet.neftyblocks.com",
+                "https://wax-testnet-history.neftyblocks.com",
+                "http://wax-testnet-history.neftyblocks.com",
+                "p2p-testnet.neftyblocks.com:19876"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "NeftyGuild",
+            "patroneos": 0,
+            "position": 18,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "3dkrenderwax",
+            "atomic": 2,
+            "bp_json": "https://3dkrender.com/waxtest.json",
+            "endpoint_errors": {
+                "http://testatomic.3dkrender.com": [],
+                "http://testnet-wax.3dkrender.com": [],
+                "https://testatomic.3dkrender.com": [],
+                "https://testnet-wax.3dkrender.com": [],
+                "testnet-p2p.3dkrender.com:9876": []
+            },
+            "endpoint_oks": {
+                "http://testatomic.3dkrender.com": [
+                    "Atomic API ok for http://testatomic.3dkrender.com"
+                ],
+                "http://testnet-wax.3dkrender.com": [
+                    "CORS headers properly configured",
+                    "API node http://testnet-wax.3dkrender.com is responding correctly",
+                    "Get authorizers from account is ok on http://testnet-wax.3dkrender.com",
+                    "History ok for http://testnet-wax.3dkrender.com"
+                ],
+                "https://testatomic.3dkrender.com": [
+                    "Atomic API ok for https://testatomic.3dkrender.com"
+                ],
+                "https://testnet-wax.3dkrender.com": [
+                    "CORS headers properly configured",
+                    "API node https://testnet-wax.3dkrender.com is responding correctly",
+                    "Get authorizers from account is ok on https://testnet-wax.3dkrender.com",
+                    "History ok for https://testnet-wax.3dkrender.com"
+                ],
+                "testnet-p2p.3dkrender.com:9876": [
+                    "P2P node testnet-p2p.3dkrender.com:9876 is responding"
+                ]
+            },
+            "endpoints": [
+                "testnet-p2p.3dkrender.com:9876",
+                "https://testnet-wax.3dkrender.com",
+                "http://testnet-wax.3dkrender.com",
+                "http://testatomic.3dkrender.com",
+                "https://testatomic.3dkrender.com"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "3DKRender",
+            "patroneos": 0,
+            "position": 33,
+            "status": 0,
+            "warnings": []
+        },
+        {
+            "account": "ivote4waxusa",
+            "atomic": 0,
+            "bp_json": "https://bp.eosusa.news/bp.json",
+            "endpoint_errors": {
+                "": [],
+                "http://seed01.eosusa.news": [
+                    "Wrong chain id"
+                ],
+                "https://seed01.eosusa.news": [],
+                "seed01.eosusa.news:9876": []
+            },
+            "endpoint_oks": {
+                "": [],
+                "http://seed01.eosusa.news": [
+                    "CORS headers properly configured"
+                ],
+                "https://seed01.eosusa.news": [],
+                "seed01.eosusa.news:9876": []
+            },
+            "endpoints": [
+                "http://seed01.eosusa.news",
+                "",
+                "seed01.eosusa.news:9876",
+                "https://seed01.eosusa.news"
+            ],
+            "errors": [],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "EOSUSA",
+            "patroneos": 0,
+            "position": 34,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "teamgreymass",
+            "atomic": 0,
+            "bp_json": "https://greymass.com/bp.json",
+            "endpoint_errors": {
+                "http://eos.greymass.com": [
+                    "Wrong chain id"
+                ],
+                "https://eos.greymass.com": [],
+                "seed.greymass.com:9876": []
+            },
+            "endpoint_oks": {
+                "http://eos.greymass.com": [
+                    "CORS headers properly configured"
+                ],
+                "https://eos.greymass.com": [],
+                "seed.greymass.com:9876": []
+            },
+            "endpoints": [
+                "seed.greymass.com:9876",
+                "https://eos.greymass.com",
+                "http://eos.greymass.com"
+            ],
+            "errors": [],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "Greymass",
+            "patroneos": 0,
+            "position": 27,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "waxexchanges",
+            "atomic": 0,
+            "bp_json": "http:///bp.json",
+            "endpoint_errors": {},
+            "endpoint_oks": {},
+            "endpoints": [],
+            "errors": [
+                "Error getting waxexchanges bp.json (http:///bp.json): Invalid URL 'http:///bp.json': No host supplied <class 'requests.exceptions.InvalidURL'>"
+            ],
+            "history": 0,
+            "hyperion": 0,
+            "oks": [],
+            "org_name": "waxexchanges",
+            "patroneos": 0,
+            "position": 52,
+            "status": 2,
+            "warnings": []
+        },
+        {
+            "account": "greeneosiobp",
+            "atomic": 0,
+            "bp_json": "https://greeneosio.com/wax-test/bp.json",
+            "endpoint_errors": {
+                "http://api.waxtest.waxgalaxy.io": [],
+                "https://api.waxtest.waxgalaxy.io": [],
+                "p2p.waxtest.waxgalaxy.io:9878": []
+            },
+            "endpoint_oks": {
+                "http://api.waxtest.waxgalaxy.io": [
+                    "CORS headers properly configured",
+                    "API node http://api.waxtest.waxgalaxy.io is responding correctly",
+                    "Get authorizers from account is ok on http://api.waxtest.waxgalaxy.io",
+                    "History ok for http://api.waxtest.waxgalaxy.io",
+                    "Hyperion history ok for http://api.waxtest.waxgalaxy.io"
+                ],
+                "https://api.waxtest.waxgalaxy.io": [
+                    "CORS headers properly configured",
+                    "API node https://api.waxtest.waxgalaxy.io is responding correctly",
+                    "Get authorizers from account is ok on https://api.waxtest.waxgalaxy.io",
+                    "History ok for https://api.waxtest.waxgalaxy.io",
+                    "Hyperion history ok for https://api.waxtest.waxgalaxy.io"
+                ],
+                "p2p.waxtest.waxgalaxy.io:9878": [
+                    "P2P node p2p.waxtest.waxgalaxy.io:9878 is responding"
+                ]
+            },
+            "endpoints": [
+                "https://api.waxtest.waxgalaxy.io",
+                "p2p.waxtest.waxgalaxy.io:9878",
+                "http://api.waxtest.waxgalaxy.io"
+            ],
+            "errors": [],
+            "history": 2,
+            "hyperion": 2,
+            "oks": [
+                "github_user present in bp.json"
+            ],
+            "org_name": "Wax Galaxy",
+            "patroneos": 0,
+            "position": 1,
+            "status": 0,
+            "warnings": []
+        }
+    ]
+}

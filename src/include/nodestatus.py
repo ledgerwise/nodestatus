@@ -1,25 +1,18 @@
 #!/usr/bin/env python3
-
-import logging
+import traceback
 import argparse
 import os
-import colorlog
-import inspect
+import requests
 import pprint
-import time
 import random
-import traceback
 import json
 import datetime
-import eospy.cleos
+import sys
 from tenacity import retry, stop_after_attempt, wait_fixed
 from urllib.parse import urljoin, urlparse
-from include.checker import Checker
+from .checker import Checker
 
 pp = pprint.PrettyPrinter(indent=4)
-
-SCRIPT_PATH = os.path.dirname(
-    os.path.abspath(inspect.getfile(inspect.currentframe())))
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-v",
@@ -40,39 +33,26 @@ parser.add_argument('-l',
 
 args = parser.parse_args()
 
-VERBOSE = args.verbose
-DEBUG = args.debug
-LOG_FILE = args.log_file
-CHAINS = []
-
-if DEBUG:
-    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
-                        level=logging.DEBUG)
-else:
-    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
-                        level=logging.INFO)
-logger = logging.getLogger(__name__)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-
-if VERBOSE:
-    ch = logging.StreamHandler()
-    ch.setFormatter(formatter)
-    logger.addHandler(ch)
-
-fh = logging.FileHandler(LOG_FILE)
-logger.addHandler(fh)
-fh.setFormatter(formatter)
-
-SCRIPT_PATH = os.path.dirname(
-    os.path.abspath(inspect.getfile(inspect.currentframe())))
-
-
 @retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
 def get_producers(chain):
     try:
         LIMIT = 200
-        CLEOS = eospy.cleos.Cleos(url=chain['api_node'])
-        result = CLEOS.get_producers(limit=LIMIT)
+        url = f'{chain["api_node"]}/v1/chain/get_table_rows'
+        payload = {
+            "json": True,
+            "code": "eosio",
+            "scope": "eosio",
+            "table": "producers",
+            "lower_bound": None,
+            "upper_bound": None,
+            "index_position": 1,
+            "key_type": "",
+            "limit": LIMIT,
+            "reverse": False,
+            "show_payer": False
+        }
+        result = requests.post(url, json= payload, timeout=chain["timeout"]).json()
+        
 
         isFIO = chain[
             'chain_id'] == '21dcae42c0182200e93f954a074011f9048a7624c6fe81d3c9541a614a88bd1c' or chain[
@@ -83,10 +63,10 @@ def get_producers(chain):
         else:
             producers = result['rows']
 
-        while result['more'] != '':
-            result = CLEOS.get_producers(limit=LIMIT,
-                                         lower_bound=result['more'])
-            producers += result['rows']
+        while result['more']:
+            payload["lower_bound"] = result['next_key']
+            result = requests.post(url, json= payload, timeout=chain["timeout"]).json()
+            producers += result['rows']  
 
         active_producers = []
         for producer in producers:
@@ -125,22 +105,14 @@ def get_producers(chain):
         return active_producers
 
     except Exception as e:
-        logging.critical('Error getting producers: {}'.format(e))
+        print('Error getting producers: {}'.format(e))
+        traceback.print_exc(file=sys.stdout)
         raise
 
 
-def main():
-    CONFIG_PATH = SCRIPT_PATH + '/config.json'
-    try:
-        with open(CONFIG_PATH, 'r') as fp:
-            CHAINS = json.load(fp)
-    except Exception as e:
-        logging.critical('Error getting config from {}: {}'.format(
-            CONFIG_PATH, e))
-        quit()
-
-    for chain_info in CHAINS:
-        logging.info('Inspecting chain {}'.format(chain_info))
+def run_nodestatus(config, pub_path):
+    for chain_info in config:
+        print('Inspecting chain {}'.format(chain_info))
         healthy_api_endpoints = []
         healthy_p2p_endpoints = []
         healthy_history_endpoints = []
@@ -149,42 +121,24 @@ def main():
         healthy_ipfs_endpoints = []
         producers_array = []
         testnet_producers = []
-
+        
         isFIO = chain_info[
             'chain_id'] == '21dcae42c0182200e93f954a074011f9048a7624c6fe81d3c9541a614a88bd1c' or chain_info[
                 'chain_id'] == 'b20901380af44ef59c5918439a1f9a41d83669020319a80574b804a5f95cbd7e'
 
+        print("hola")
         try:
             producers = get_producers(chain_info)
-            # if not isFIO:
-            #     for testnet in chain_info['testnets']:
-            #         testnet_producers_array = get_producers(testnet)
-            #         testnet_producers += [
-            #             x['owner'] for x in testnet_producers_array
-            #         ]
         except Exception as e:
-            logging.critical('Too many retries getting producers')
+            print('Too many retries getting producers')
             continue
-
+        
         for producer in producers:
             # if producer['owner'] != 'alohaeosprod':
             #     continue
-            logging.info('Checking producer {}'.format(producer['owner']))
-            checker = Checker(chain_info, producer, logging)
+            print('Checking producer {}'.format(producer['owner']))
+            checker = Checker(chain_info, producer)
             checker.run_checks()
-
-            #Check producer in testnet
-            # if not isFIO:
-            #     if producer['owner'] not in testnet_producers:
-            #         msg = 'Producer {} might not be registered or registered with some other name in testnet'.format(
-            #             producer['owner'])
-            #         logging.warning(msg)
-            #         checker.warnings.append(msg)
-            #     else:
-            #         msg = 'Producer name {} is registered as producer in testnet'.format(
-            #             producer['owner'])
-            #         logging.info(msg)
-            #         checker.oks.append(msg)
 
             healthy_api_endpoints += checker.healthy_api_endpoints
             healthy_p2p_endpoints += checker.healthy_p2p_endpoints
@@ -252,18 +206,11 @@ def main():
 
         }
 
-        PUB_PATH = '{}/pub'.format(SCRIPT_PATH)
         CURRENT_DATE = datetime.datetime.today().strftime('%Y-%m-%d')
-        if not os.path.exists(PUB_PATH):
-            os.makedirs(PUB_PATH)
-        with open('{}/pub/{}.json'.format(SCRIPT_PATH, chain_info['chain_id']),
-                  'w') as fp:
+        if not os.path.exists(pub_path):
+            os.makedirs(pub_path)
+        with open(f'{pub_path}/{chain_info["chain_id"]}.json', 'w') as fp:
             json.dump(data, fp, sort_keys=True, indent=4)
-        with open(
-                '{}/pub/{}-{}.json'.format(SCRIPT_PATH, chain_info['chain_id'],
-                                           CURRENT_DATE), 'w') as fp:
+        with open(f'{pub_path}/{chain_info["chain_id"]}-{CURRENT_DATE}.json', 'w') as fp:
             json.dump(data, fp, sort_keys=True, indent=4)
 
-
-if __name__ == "__main__":
-    main()
