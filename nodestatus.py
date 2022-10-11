@@ -96,7 +96,7 @@ def get_producers(chain):
                 p = {
                     'owner': producer['owner'],
                     'url': producer['url'],
-                    'bp_json_url': urljoin(producer['url'], '/bp.json'),
+                    'bp_json_url': urljoin(producer['url'], 'bp.json'),
                     'chains_json_url': urljoin(producer['url'], '/chains.json')
                 }
                 if isFIO:
