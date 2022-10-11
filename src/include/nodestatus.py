@@ -133,8 +133,8 @@ def run_nodestatus(config, pub_path):
             continue
         
         for producer in producers:
-            if producer['owner'] != 'ivote4waxusa':
-                continue
+            # if producer['owner'] != 'ivote4waxusa':
+            #     continue
             print(producer)
             print('Checking producer {}'.format(producer['owner']))
             checker = Checker(chain_info, producer)
