@@ -71,17 +71,17 @@ def get_producers(chain):
         active_producers = []
         for producer in producers:
             if producer['is_active'] != 0:
+                
                 if not producer['url'].startswith('http'):
                     producer['url'] = 'http://' + producer['url']
                 p = {
                     'owner': producer['owner'],
                     'url': producer['url'],
-                    'bp_json_url': urljoin(producer['url'], '/bp.json'),
+                    'bp_json_url': urljoin(producer['url'], 'bp.json'),
                     'chains_json_url': urljoin(producer['url'], '/chains.json')
                 }
                 if isFIO:
                     p['fio_address'] = producer['fio_address']
-
                 active_producers.append(p)
 
         if chain[
@@ -126,7 +126,6 @@ def run_nodestatus(config, pub_path):
             'chain_id'] == '21dcae42c0182200e93f954a074011f9048a7624c6fe81d3c9541a614a88bd1c' or chain_info[
                 'chain_id'] == 'b20901380af44ef59c5918439a1f9a41d83669020319a80574b804a5f95cbd7e'
 
-        print("hola")
         try:
             producers = get_producers(chain_info)
         except Exception as e:
@@ -134,8 +133,9 @@ def run_nodestatus(config, pub_path):
             continue
         
         for producer in producers:
-            # if producer['owner'] != 'alohaeosprod':
-            #     continue
+            if producer['owner'] != 'ivote4waxusa':
+                continue
+            print(producer)
             print('Checking producer {}'.format(producer['owner']))
             checker = Checker(chain_info, producer)
             checker.run_checks()
