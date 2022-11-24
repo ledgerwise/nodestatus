@@ -398,19 +398,23 @@ class Checker:
                     errors_found = True
 
                 if item['service'] == 'Elasticsearch':
-                    if 'total_indexed_blocks' in item[
+                    missing_blocks = 0
+                    if 'missing_blocks' in item['service_data']:
+                        missing_blocks = item['service_data']['missing_blocks']
+                    elif 'total_indexed_blocks' in item[
                             'service_data'] and 'last_indexed_block' in item[
                                 'service_data']:
                         last_indexed_block = item['service_data'][
                             'last_indexed_block']
                         total_indexed_blocks = item['service_data'][
                             'total_indexed_blocks']
-                        if last_indexed_block != total_indexed_blocks:
-                            msg = 'Hyperion ElastiSearch last_indexed_block ({}) is different than total_indexed_blocks ({})'.format(last_indexed_block, total_indexed_blocks)
-                            self.logging.critical(msg)
-                            self.endpoint_errors[url].append(msg)
-                            self.status = 2
-                            errors_found = True
+                        missing_blocks = abs(last_indexed_block - total_indexed_blocks)
+                    if missing_blocks > 0:
+                        msg = 'Hyperion ElastiSearch missing some blocks'
+                        self.logging.critical(msg)
+                        self.endpoint_errors[url].append(msg)
+                        self.status = 2
+                        errors_found = True
 
         except Exception as e:
             msg = 'Error getting hyperion history from {}: {}'.format(url, e)
