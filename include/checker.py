@@ -9,7 +9,6 @@ from tenacity import retry, stop_after_attempt, wait_fixed
 import pprint
 import time
 import json
-from deepdiff import DeepDiff
 
 pp = pprint.PrettyPrinter(indent=4)
 DELAY = 0.3
