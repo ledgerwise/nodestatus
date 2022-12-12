@@ -603,7 +603,8 @@ class Checker:
 
     def run_checks(self):
         self.get_bpjson(timeout=self.chain_info['timeout'])
-        self.get_onchain_bpjson(timeout=self.chain_info['timeout'])
+        if self.chain_info["name"] == "WAX":
+            self.get_onchain_bpjson(timeout=self.chain_info['timeout'])
         if self.nodes:
             for node in self.bp_json['nodes']:
                 if 'query' in node['node_type'] and 'features' in node:
