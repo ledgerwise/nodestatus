@@ -82,7 +82,6 @@ class Checker:
             result = response.json()
             if len(result["rows"]) < 1:
                 msg = f'No bpjson on chain for producer {PRODUCER}'    
-                if self.status < 2: self.status = 1 
                 self.warnings.append(msg)
                 self.logging.critical(msg)
             else:
@@ -95,7 +94,6 @@ class Checker:
                     self.logging.info(msg)
                 else:
                     msg = f'bpjson on chain for producer {PRODUCER} doesnt match the one online'    
-                    if self.status < 2: self.status = 1 
                     self.warnings.append(msg)
                     self.logging.critical(msg)
 
