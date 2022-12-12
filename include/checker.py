@@ -8,6 +8,8 @@ from urllib.parse import urljoin
 from tenacity import retry, stop_after_attempt, wait_fixed
 import pprint
 import time
+import json
+from deepdiff import DeepDiff
 
 pp = pprint.PrettyPrinter(indent=4)
 DELAY = 0.3
@@ -36,6 +38,7 @@ class Checker:
         self.ipfs_errors = []
         self.nodes = []
         self.endpoints = []
+        self.onchain_bp_json = False
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def get_producer_chainsjson_path(self, url, chain_id, timeout):
@@ -47,6 +50,55 @@ class Checker:
             self.logging.critical(
                 'Error getting chains.json from {}: {}'.format(url, e))
             return None
+
+    @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
+    def get_onchain_bpjson(self, timeout):
+        time.sleep(DELAY)
+        API_NODE = self.chain_info["api_node"] 
+        ENDPOINT = f'{API_NODE}/v1/chain/get_table_rows'
+        PRODUCER = self.producer_info["owner"]
+
+        payload = {
+        "json": True,
+            "code": "producerjson",
+            "scope": "producerjson",
+            "table": "producerjson",
+            "lower_bound": PRODUCER,
+            "upper_bound": PRODUCER,
+            "index_position": 1,
+            "key_type": "",
+            "limit": "1",
+            "reverse": False,
+            "show_payer": True
+            }
+        
+        response = requests.post(ENDPOINT, json=payload, timeout=timeout)
+        if response.status_code != 200:
+            msg = f'Error getting bpjson on chain for producer {PRODUCER}'
+            self.logging.critical(msg)
+            print(response.text)
+            return
+        else: 
+            result = response.json()
+            if len(result["rows"]) < 1:
+                msg = f'No bpjson on chain for producer {PRODUCER}'    
+                if self.status < 2: self.status = 1 
+                self.warnings.append(msg)
+                self.logging.critical(msg)
+            else:
+                onchain_bpjson = json.loads(result["rows"][0]["data"]["json"])
+                online_bpjson = json.loads(self.bp_json_string)
+                same_json = onchain_bpjson == online_bpjson
+                if same_json:
+                    msg = f'bpjson on chain for producer {PRODUCER} matches the one online'    
+                    self.oks.append(msg)
+                    self.logging.info(msg)
+                else:
+                    msg = f'bpjson on chain for producer {PRODUCER} doesnt match the one online'    
+                    if self.status < 2: self.status = 1 
+                    self.warnings.append(msg)
+                    self.logging.critical(msg)
+
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def get_bpjson(self, timeout):
@@ -84,6 +136,7 @@ class Checker:
                 return
 
             self.bp_json = response.json()
+            self.bp_json_string = response.text
 
             if not 'github_user' in self.bp_json['org']:
                 msg = 'github_user missing in bp.json'
@@ -552,6 +605,7 @@ class Checker:
 
     def run_checks(self):
         self.get_bpjson(timeout=self.chain_info['timeout'])
+        self.get_onchain_bpjson(timeout=self.chain_info['timeout'])
         if self.nodes:
             for node in self.bp_json['nodes']:
                 if 'query' in node['node_type'] and 'features' in node:
