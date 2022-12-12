@@ -21,6 +21,7 @@ class Checker:
         self.producer_info = producer
         self.org_name = self.producer_info['owner']
         self.bp_json = None
+        self.bp_json_string = '{}'
         self.patroneos = 0
         self.status = 0
         self.errors = []
