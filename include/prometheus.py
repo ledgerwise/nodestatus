@@ -33,6 +33,7 @@ def send_metric(
         return
 
     job = f'nodestatus-{metric_name}-{base_labels["producer"]}'
+    job = "nodestatus"
     pushadd_to_gateway(PROMETHEUS_CONFIG["endpoint"], job=job, registry=registry)
 
 
