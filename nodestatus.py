@@ -133,7 +133,9 @@ def main():
     CONFIG_PATH = SCRIPT_PATH + '/config.json'
     try:
         with open(CONFIG_PATH, 'r') as fp:
-            CHAINS = json.load(fp)
+            CONFIG = json.load(fp)
+            CHAINS = CONFIG["chains"]
+            PROMETHEUS = CONFIG["prometheus"]
     except Exception as e:
         logging.critical('Error getting config from {}: {}'.format(
             CONFIG_PATH, e))
@@ -148,7 +150,6 @@ def main():
         healthy_atomic_endpoints = []
         healthy_ipfs_endpoints = []
         producers_array = []
-        testnet_producers = []
 
         isFIO = chain_info[
             'chain_id'] == '21dcae42c0182200e93f954a074011f9048a7624c6fe81d3c9541a614a88bd1c' or chain_info[
@@ -156,35 +157,17 @@ def main():
 
         try:
             producers = get_producers(chain_info)
-            # if not isFIO:
-            #     for testnet in chain_info['testnets']:
-            #         testnet_producers_array = get_producers(testnet)
-            #         testnet_producers += [
-            #             x['owner'] for x in testnet_producers_array
-            #         ]
+
         except Exception as e:
             logging.critical('Too many retries getting producers')
             continue
 
         for producer in producers:
-            # if producer['owner'] != 'ledgerwiseio':
-            #     continue
+            if producer['owner'] != 'ledgerwiseio':
+                continue
             logging.info('Checking producer {}'.format(producer['owner']))
-            checker = Checker(chain_info, producer, logging)
+            checker = Checker(chain_info, producer, logging, PROMETHEUS)
             checker.run_checks()
-
-            #Check producer in testnet
-            # if not isFIO:
-            #     if producer['owner'] not in testnet_producers:
-            #         msg = 'Producer {} might not be registered or registered with some other name in testnet'.format(
-            #             producer['owner'])
-            #         logging.warning(msg)
-            #         checker.warnings.append(msg)
-            #     else:
-            #         msg = 'Producer name {} is registered as producer in testnet'.format(
-            #             producer['owner'])
-            #         logging.info(msg)
-            #         checker.oks.append(msg)
 
             healthy_api_endpoints += checker.healthy_api_endpoints
             healthy_p2p_endpoints += checker.healthy_p2p_endpoints
