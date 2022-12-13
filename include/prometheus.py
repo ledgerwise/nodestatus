@@ -1,4 +1,4 @@
-from prometheus_client import CollectorRegistry, Gauge, push_to_gateway
+from prometheus_client import CollectorRegistry, Gauge, pushadd_to_gateway
 from prometheus_client.exposition import basic_auth_handler
 
 
@@ -32,7 +32,8 @@ def send_metric(
         print(f"Unknown metric {metric_type}")
         return
 
-    push_to_gateway(PROMETHEUS_CONFIG["endpoint"], job="nodestatus", registry=registry)
+    job = f'nodestatus-{metric_name}-{base_labels["producer"]}'
+    pushadd_to_gateway(PROMETHEUS_CONFIG["endpoint"], job=job, registry=registry)
 
 
 def send_bpjson_accessible_metric(
@@ -45,4 +46,30 @@ def send_bpjson_accessible_metric(
         "gauge",
         metric_value,
         "BP json accessible",
+    )
+
+
+def send_bpjson_status_metric(
+    PROMETHEUS_CONFIG, common_prometheus_labels, metric_value
+):
+    send_metric(
+        PROMETHEUS_CONFIG,
+        common_prometheus_labels,
+        "bpjson_status",
+        "gauge",
+        metric_value,
+        "BP json response status",
+    )
+
+
+def send_bpjson_response_time_metric(
+    PROMETHEUS_CONFIG, common_prometheus_labels, metric_value
+):
+    send_metric(
+        PROMETHEUS_CONFIG,
+        common_prometheus_labels,
+        "bpjson_response_time",
+        "gauge",
+        metric_value,
+        "BP json response time",
     )

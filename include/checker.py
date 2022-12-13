@@ -134,6 +134,18 @@ class Checker:
                 self.producer_info["bp_json_url"], headers=headers, timeout=timeout
             )
 
+            send_bpjson_status_metric(
+                self.PROMETHEUS_CONFIG,
+                self.common_prometheus_labels,
+                response.status_code,
+            )
+
+            send_bpjson_response_time_metric(
+                self.PROMETHEUS_CONFIG,
+                self.common_prometheus_labels,
+                response.elapsed.total_seconds(),
+            )
+
             if response.status_code != 200:
                 msg = "Error getting bp.json: {} - {}".format(
                     response.status_code,
