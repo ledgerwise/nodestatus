@@ -19,19 +19,18 @@ def send_metric(
     labels = {**base_labels, **additional_labels}
     registry = CollectorRegistry()
 
-    match metric_type:
-        case "gauge":
-            gauge = Gauge(
-                FULL_METRIC_NAME,
-                metric_description,
-                labelnames=labels.keys(),
-                registry=registry,
-            )
-            gauge.labels(**labels).set(metric_value)
+    if metric_type == "gauge":
+        gauge = Gauge(
+            FULL_METRIC_NAME,
+            metric_description,
+            labelnames=labels.keys(),
+            registry=registry,
+        )
+        gauge.labels(**labels).set(metric_value)
 
-        case _:
-            print(f"Unknown metric {metric_type}")
-            return
+    else:
+        print(f"Unknown metric {metric_type}")
+        return
 
     push_to_gateway(PROMETHEUS_CONFIG["endpoint"], job="nodestatus", registry=registry)
 
