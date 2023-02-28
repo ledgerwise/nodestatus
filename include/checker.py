@@ -456,7 +456,7 @@ class Checker:
 
             json = response.json()
             last_action_date = dateutil.parser.parse(
-                json["actions"][0]["@timestamp"]
+                json["actions"][0]["timestamp"]
             ).replace(tzinfo=None)
             diff_secs = (datetime.datetime.utcnow() - last_action_date).total_seconds()
             if diff_secs > 600:
@@ -531,7 +531,6 @@ class Checker:
         time.sleep(DELAY)
         errors_found = False
         try:
-
             # Check atomic service health
             health_url = "{}/health".format(url.rstrip("/"))
             response = requests.get(health_url, timeout=timeout)
