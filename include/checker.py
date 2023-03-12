@@ -12,6 +12,7 @@ import pprint
 import time
 import json
 from .prometheus import *
+from deepdiff import DeepDiff
 
 pp = pprint.PrettyPrinter(indent=4)
 DELAY = 0.3
@@ -99,15 +100,15 @@ class Checker:
             else:
                 onchain_bpjson = json.loads(result["rows"][0]["data"]["json"])
                 online_bpjson = json.loads(self.bp_json_string)
-                same_json = onchain_bpjson == online_bpjson
-                if same_json:
+                diff = DeepDiff(onchain_bpjson, online_bpjson)
+                if not diff:
                     msg = f"bpjson on chain for producer {PRODUCER} matches the one online"
                     self.oks.append(msg)
                     self.logging.info(msg)
                 else:
                     msg = f"bpjson on chain for producer {PRODUCER} doesnt match the one online"
                     self.warnings.append(msg)
-                    self.logging.critical(msg)
+                    self.logging.critical(msg, diff)
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def get_bpjson(self, timeout):
