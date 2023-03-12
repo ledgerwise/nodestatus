@@ -733,7 +733,7 @@ class Checker:
                                 node["ssl_endpoint"], self.chain_info["timeout"]
                             )
 
-                if "seed" in node["node_type"]:
+                if "node_type" in node and "seed" in node["node_type"]:
                     # Check P2P
                     if "p2p_endpoint" in node:
                         self.check_p2p(node["p2p_endpoint"], self.chain_info["timeout"])
