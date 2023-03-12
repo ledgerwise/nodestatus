@@ -649,7 +649,11 @@ class Checker:
             self.get_onchain_bpjson(timeout=self.chain_info["timeout"])
         if self.nodes:
             for node in self.bp_json["nodes"]:
-                if "query" in node["node_type"] and "features" in node:
+                if (
+                    "node_type" in node
+                    and "query" in node["node_type"]
+                    and "features" in node
+                ):
                     # Check API
                     if "chain-api" in node["features"]:
                         if "api_endpoint" in node:
