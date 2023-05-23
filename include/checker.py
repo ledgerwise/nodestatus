@@ -127,6 +127,8 @@ class Checker:
                 self.producer_info["url"], chains_json_path
             )
 
+        self.logging.info(f'Bp.json url: ${self.producer_info["bp_json_url"]}')
+
         try:
             headers = {
                 "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"
@@ -175,6 +177,7 @@ class Checker:
 
             nodes = self.bp_json["nodes"]
             for index, node in enumerate(nodes):
+                print(node)
                 if not "node_type" in node:
                     msg = "node_type not present for node {}".format(index + 1)
                     self.logging.critical(msg)
@@ -185,15 +188,6 @@ class Checker:
                 if type(node_type) is str:
                     node_type = [node_type]
                     node["node_type"] = node_type
-
-                if not "features" in node and "query" in node_type:
-                    msg = "features not present for node {} of type query".format(
-                        index + 1
-                    )
-                    self.logging.critical(msg)
-                    self.errors.append(msg)
-                    self.status = 2
-                    continue
 
                 if "api_endpoint" in node:
                     self.endpoint_errors[node["api_endpoint"]] = []
@@ -209,6 +203,15 @@ class Checker:
                     self.endpoint_errors[node["p2p_endpoint"]] = []
                     self.endpoint_oks[node["p2p_endpoint"]] = []
                     self.endpoints.append(node["p2p_endpoint"])
+
+                if not "features" in node and "query" in node_type:
+                    msg = "features not present for node {} of type query".format(
+                        index + 1
+                    )
+                    self.logging.critical(msg)
+                    self.errors.append(msg)
+                    self.status = 2
+                    continue
 
                 if "features" in node:
                     if "chain-api" in node["features"]:
@@ -291,6 +294,7 @@ class Checker:
         self.healthy_p2p_endpoints.append(url)
         msg = "P2P node {} is responding".format(url)
         self.logging.info(msg)
+        print(self.endpoint_oks)
         self.endpoint_oks[url].append(msg)
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
