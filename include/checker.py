@@ -51,6 +51,7 @@ class Checker:
             "checker_host": socket.gethostname(),
             "checker_ip": socket.gethostbyname(socket.gethostname()),
         }
+        self.org = {}
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def get_producer_chainsjson_path(self, url, chain_id, timeout):
@@ -166,6 +167,9 @@ class Checker:
 
             self.bp_json = response.json()
             self.bp_json_string = response.text
+
+            if "org" in self.bp_json:
+                self.org = self.bp_json["org"]
 
             if not "github_user" in self.bp_json["org"]:
                 msg = "github_user missing in bp.json"
