@@ -186,6 +186,7 @@ def main():
             producer_info = {
                 "account": producer["owner"],
                 "org_name": checker.org_name,
+                "org": checker.org,
                 "history": len(checker.healthy_history_endpoints),
                 "hyperion": len(checker.healthy_hyperion_endpoints),
                 "atomic": len(checker.healthy_atomic_endpoints),
