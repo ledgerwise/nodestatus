@@ -140,7 +140,6 @@ def main():
         with open(CONFIG_PATH, "r") as fp:
             CONFIG = json.load(fp)
             CHAINS = CONFIG["chains"]
-            PROMETHEUS = CONFIG["prometheus"]
     except Exception as e:
         logging.critical("Error getting config from {}: {}".format(CONFIG_PATH, e))
         quit()
@@ -170,10 +169,10 @@ def main():
             continue
 
         for producer in producers:
-            # if producer['owner'] != 'ledgerwiseio':
-            #     continue
+            if producer["owner"] != "ledgerwiseio":
+                continue
             logging.info("Checking producer {}".format(producer["owner"]))
-            checker = Checker(chain_info, producer, logging, PROMETHEUS)
+            checker = Checker(chain_info, producer, logging)
             checker.run_checks()
 
             healthy_api_endpoints += checker.healthy_api_endpoints
@@ -186,7 +185,7 @@ def main():
             producer_info = {
                 "account": producer["owner"],
                 "org_name": checker.org_name,
-                "org": checker.org,
+                "bp_json_content": checker.bp_json,
                 "history": len(checker.healthy_history_endpoints),
                 "hyperion": len(checker.healthy_hyperion_endpoints),
                 "atomic": len(checker.healthy_atomic_endpoints),

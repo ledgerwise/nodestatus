@@ -11,7 +11,6 @@ from tenacity.wait import wait_fixed
 import pprint
 import time
 import json
-from .prometheus import *
 from deepdiff import DeepDiff
 
 pp = pprint.PrettyPrinter(indent=4)
@@ -19,7 +18,7 @@ DELAY = 0.3
 
 
 class Checker:
-    def __init__(self, chain_info, producer, logging, PROMETHEUS_CONFIG):
+    def __init__(self, chain_info, producer, logging):
         self.chain_info = chain_info
         self.wrong_chain_id = False
         self.logging = logging
@@ -44,14 +43,6 @@ class Checker:
         self.nodes = []
         self.endpoints = []
         self.onchain_bp_json = False
-        self.PROMETHEUS_CONFIG = PROMETHEUS_CONFIG
-        self.common_prometheus_labels = {
-            "chain": chain_info["name"],
-            "producer": producer["owner"],
-            "checker_host": socket.gethostname(),
-            "checker_ip": socket.gethostbyname(socket.gethostname()),
-        }
-        self.org = {}
 
     @retry(stop=stop_after_attempt(2), wait=wait_fixed(2), reraise=True)
     def get_producer_chainsjson_path(self, url, chain_id, timeout):
@@ -138,18 +129,6 @@ class Checker:
                 self.producer_info["bp_json_url"], headers=headers, timeout=timeout
             )
 
-            send_bpjson_status_metric(
-                self.PROMETHEUS_CONFIG,
-                self.common_prometheus_labels,
-                response.status_code,
-            )
-
-            send_bpjson_response_time_metric(
-                self.PROMETHEUS_CONFIG,
-                self.common_prometheus_labels,
-                response.elapsed.total_seconds(),
-            )
-
             if response.status_code != 200:
                 msg = "Error getting bp.json: {} - {}".format(
                     response.status_code,
@@ -160,9 +139,6 @@ class Checker:
                 self.logging.critical(msg)
                 self.errors.append(msg)
                 self.status = 2
-                send_bpjson_accessible_metric(
-                    self.PROMETHEUS_CONFIG, self.common_prometheus_labels, 0
-                )
                 return
 
             self.bp_json = response.json()
@@ -241,10 +217,6 @@ class Checker:
                 self.errors.append(msg)
                 self.logging.critical(msg)
                 self.status = 2
-
-            send_bpjson_accessible_metric(
-                self.PROMETHEUS_CONFIG, self.common_prometheus_labels, 1
-            )
 
         except requests.exceptions.SSLError as e:
             self.status = 2
