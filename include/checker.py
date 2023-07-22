@@ -90,7 +90,10 @@ class Checker:
                 self.warnings.append(msg)
                 self.logging.critical(msg)
             else:
-                onchain_bpjson = json.loads(result["rows"][0]["data"]["json"])
+                try:
+                    onchain_bpjson = json.loads(result["rows"][0]["data"]["json"])
+                except:
+                    onchain_bpjson = {}
                 online_bpjson = json.loads(self.bp_json_string)
                 diff = DeepDiff(onchain_bpjson, online_bpjson)
                 if not diff:
