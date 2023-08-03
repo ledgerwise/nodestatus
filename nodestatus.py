@@ -15,6 +15,7 @@ import eospy.cleos
 from tenacity import retry, stop_after_attempt, wait_fixed
 from urllib.parse import urljoin, urlparse
 from include.checker import Checker
+import glob
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -134,6 +135,27 @@ def get_producers(chain):
         raise
 
 
+def bundle(CHAINS):
+    PUB_PATH = "{}/pub".format(SCRIPT_PATH)
+    NUM_DAYS = 45
+
+    for CHAIN in CHAINS:
+        CHAIN_ID = CHAIN["chain_id"]
+        SEARCH_TERM = f"{PUB_PATH}/{CHAIN_ID}-*"
+        BUNDLE_PATH = f"{PUB_PATH}/{CHAIN_ID}-bundle.json"
+        bundle = {}
+        files = sorted(list(filter(os.path.isfile, glob.glob(SEARCH_TERM + "*"))))[
+            0:NUM_DAYS
+        ]
+        for file in files:
+            date = file[-15:-5]
+            with open(file, "r") as fp:
+                bundle[date] = json.load(fp)
+
+        with open(BUNDLE_PATH, "w") as fp:
+            json.dump(bundle, fp, indent=2)
+
+
 def main():
     CONFIG_PATH = SCRIPT_PATH + "/config.json"
     try:
@@ -143,6 +165,9 @@ def main():
     except Exception as e:
         logging.critical("Error getting config from {}: {}".format(CONFIG_PATH, e))
         quit()
+
+    bundle(CHAINS)
+    logging.info("Generating bundle")
 
     for chain_info in CHAINS:
         logging.info("Inspecting chain {}".format(chain_info))
