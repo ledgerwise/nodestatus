@@ -145,7 +145,7 @@ def bundle(CHAINS):
         BUNDLE_PATH = f"{PUB_PATH}/{CHAIN_ID}-bundle.json"
         bundle = {}
         files = sorted(list(filter(os.path.isfile, glob.glob(SEARCH_TERM + "*"))))[
-            0:NUM_DAYS
+            -NUM_DAYS:
         ]
         for file in files:
             date = file[-15:-5]
