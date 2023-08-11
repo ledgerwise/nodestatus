@@ -141,7 +141,7 @@ def bundle(CHAINS):
 
     for CHAIN in CHAINS:
         CHAIN_ID = CHAIN["chain_id"]
-        SEARCH_TERM = f"{PUB_PATH}/{CHAIN_ID}-*"
+        SEARCH_TERM = f"{PUB_PATH}/{CHAIN_ID}-2*"
         BUNDLE_PATH = f"{PUB_PATH}/{CHAIN_ID}-bundle.json"
         bundle = {}
         files = sorted(list(filter(os.path.isfile, glob.glob(SEARCH_TERM + "*"))))[
@@ -149,10 +149,11 @@ def bundle(CHAINS):
         ]
         for file in files:
             date = file[-15:-5]
+            print(date)
             with open(file, "r") as fp:
                 bundle[date] = json.load(fp)
 
-        with open(BUNDLE_PATH, "x") as fp:
+        with open(BUNDLE_PATH, "w") as fp:
             json.dump(bundle, fp, indent=2)
 
 
@@ -194,8 +195,8 @@ def main():
             continue
 
         for producer in producers:
-            # if producer["owner"] != "ledgerwiseio":
-            #     continue
+            if producer["owner"] != "ledgerwiseio":
+                continue
             logging.info("Checking producer {}".format(producer["owner"]))
             checker = Checker(chain_info, producer, logging)
             checker.run_checks()
