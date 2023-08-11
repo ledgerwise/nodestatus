@@ -152,7 +152,7 @@ def bundle(CHAINS):
             with open(file, "r") as fp:
                 bundle[date] = json.load(fp)
 
-        with open(BUNDLE_PATH, "w") as fp:
+        with open(BUNDLE_PATH, "x") as fp:
             json.dump(bundle, fp, indent=2)
 
 
