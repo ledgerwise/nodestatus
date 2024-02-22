@@ -135,9 +135,11 @@ class Checker:
             if response.status_code != 200:
                 msg = "Error getting bp.json: {} - {}".format(
                     response.status_code,
-                    (response.text[:75] + "..")
-                    if len(response.text) > 75
-                    else response.text,
+                    (
+                        (response.text[:75] + "..")
+                        if len(response.text) > 75
+                        else response.text
+                    ),
                 )
                 self.logging.critical(msg)
                 self.errors.append(msg)
@@ -479,7 +481,7 @@ class Checker:
                 if item["service"] == "Elasticsearch":
                     missing_blocks = 0
                     if "missing_blocks" in item["service_data"]:
-                        missing_blocks = item["service_data"]["missing_blocks"]
+                        missing_blocks = int(item["service_data"]["missing_blocks"])
                     elif (
                         "total_indexed_blocks" in item["service_data"]
                         and "last_indexed_block" in item["service_data"]
