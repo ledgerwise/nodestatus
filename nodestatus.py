@@ -208,7 +208,7 @@ def main():
             healthy_hyperion_endpoints += checker.healthy_hyperion_endpoints
             healthy_atomic_endpoints += checker.healthy_atomic_endpoints
             healthy_ipfs_endpoints += checker.healthy_ipfs_endpoints
-            healthy_ipfs_endpoints += checker.healthy_lightapi_endpoints
+            healthy_lightapi_endpoints += checker.healthy_lightapi_endpoints
 
             producer_info = {
                 "account": producer["owner"],
