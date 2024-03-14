@@ -178,6 +178,7 @@ def main():
         healthy_hyperion_endpoints = []
         healthy_atomic_endpoints = []
         healthy_ipfs_endpoints = []
+        healthy_lightapi_endpoints = []
         producers_array = []
 
         isFIO = (
@@ -207,6 +208,7 @@ def main():
             healthy_hyperion_endpoints += checker.healthy_hyperion_endpoints
             healthy_atomic_endpoints += checker.healthy_atomic_endpoints
             healthy_ipfs_endpoints += checker.healthy_ipfs_endpoints
+            healthy_ipfs_endpoints += checker.healthy_lightapi_endpoints
 
             producer_info = {
                 "account": producer["owner"],
@@ -215,6 +217,7 @@ def main():
                 "history": len(checker.healthy_history_endpoints),
                 "hyperion": len(checker.healthy_hyperion_endpoints),
                 "atomic": len(checker.healthy_atomic_endpoints),
+                "lightapi": len(checker.healthy_lightapi_endpoints),
                 "patroneos": checker.patroneos,
                 "position": checker.producer_info["position"],
                 "status": checker.status,
@@ -239,6 +242,7 @@ def main():
         healthy_atomic_endpoints = list(set(healthy_atomic_endpoints))
         healthy_hyperion_endpoints = list(set(healthy_hyperion_endpoints))
         healthy_ipfs_endpoints = list(set(healthy_ipfs_endpoints))
+        healthy_lightapi_endpoints = list(set(healthy_lightapi_endpoints))
         random.shuffle(producers_array)
         random.shuffle(healthy_api_endpoints)
         random.shuffle(healthy_p2p_endpoints)
@@ -246,6 +250,7 @@ def main():
         random.shuffle(healthy_atomic_endpoints)
         random.shuffle(healthy_hyperion_endpoints)
         random.shuffle(healthy_ipfs_endpoints)
+        random.shuffle(healthy_lightapi_endpoints)
 
         data = {
             "producers": producers_array,
@@ -257,6 +262,7 @@ def main():
             "healthy_hyperion_endpoints": healthy_hyperion_endpoints,
             "healthy_atomic_endpoints": healthy_atomic_endpoints,
             "healthy_ipfs_endpoints": healthy_ipfs_endpoints,
+            "healthy_lightapi_endpoints": healthy_lightapi_endpoints,
         }
 
         PUB_PATH = "{}/pub".format(SCRIPT_PATH)

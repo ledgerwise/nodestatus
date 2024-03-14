@@ -39,7 +39,9 @@ class Checker:
         self.healthy_hyperion_endpoints = []
         self.healthy_atomic_endpoints = []
         self.healthy_ipfs_endpoints = []
+        self.healthy_lightapi_endpoints = []
         self.ipfs_errors = []
+        self.lightapi_errors = []
         self.nodes = []
         self.endpoints = []
         self.onchain_bp_json = False
@@ -628,6 +630,31 @@ class Checker:
             self.logging.error(msg)
             return
 
+    @retry(stop=stop_after_attempt(1), wait=wait_fixed(3), reraise=True)
+    def check_lightapi(self, url, timeout):
+        time.sleep(DELAY)
+        try:
+            api_url = f"{url}/api/status"
+            response = requests.get(api_url, timeout=timeout)
+            if response.status_code != 200:
+                self.status = 2
+                msg = f"Light API error: {response.status_code}"
+
+                self.lightapi_errors[url].append(msg)
+                self.logging.critical(msg)
+                return
+
+            else:
+                msg = f"Light API is ok on {url}"
+                self.endpoint_oks[url].append(msg)
+                self.healthy_lightapi_endpoints.append(url)
+                self.logging.info(msg)
+
+        except Exception as e:
+            msg = "Error getting ipfs image from {}: {}".format(url, e)
+            self.logging.error(msg)
+            return
+
     def run_checks(self):
         self.get_bpjson(timeout=self.chain_info["timeout"])
         if self.chain_info["name"] == "WAX":
@@ -715,6 +742,17 @@ class Checker:
                             )
                         if "ssl_endpoint" in node:
                             self.check_ipfs(
+                                node["ssl_endpoint"], self.chain_info["timeout"]
+                            )
+
+                    # Check lightapi
+                    if "light-api" in node["features"]:
+                        if "api_endpoint" in node:
+                            self.check_lightapi(
+                                node["api_endpoint"], self.chain_info["timeout"]
+                            )
+                        if "ssl_endpoint" in node:
+                            self.check_lightapi(
                                 node["ssl_endpoint"], self.chain_info["timeout"]
                             )
 
