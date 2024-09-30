@@ -607,14 +607,15 @@ class Checker:
     def check_ipfs(self, url, timeout):
         time.sleep(DELAY)
         try:
-            api_url = urljoin(url, "ipfs/QmWnfdZkwWJxabDUbimrtaweYF8u9TaESDBM8xvRxxbQxv")
-            print(api_url)
+            path = "ipfs/QmWnfdZkwWJxabDUbimrtaweYF8u9TaESDBM8xvRxxbQxv"
+            if url[-1] != '/': path = f'/{path}'
+            api_url = urljoin(url, path)
             response = requests.get(api_url, timeout=timeout)
             if response.status_code != 200:
+                print(response.text)
+                print(response.status_code)
                 self.status = 2
-                msg = "Error getting ipfs image from {}: {}".format(
-                    api_url, "Response error: {}".format(response.status_code)
-                )
+                msg = f'Error getting ipfs image from {api_url}: Response error: {response.status_code}'
 
                 self.ipfs_errors[url].append(msg)
                 self.logging.critical(msg)
@@ -627,6 +628,7 @@ class Checker:
                 self.logging.info(msg)
 
         except Exception as e:
+            print(e)
             msg = "Error getting ipfs image from {}: {}".format(url, e)
             self.logging.error(msg)
             return
@@ -635,7 +637,9 @@ class Checker:
     def check_lightapi(self, url, timeout):
         time.sleep(DELAY)
         try:
-            api_url = urljoin(url, "api/status")
+            path = "api/status"
+            if url[-1] != '/': path = f'/{path}'
+            api_url = urljoin(url, path)
             response = requests.get(api_url, timeout=timeout)
             if response.status_code != 200:
                 self.status = 2
