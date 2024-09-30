@@ -254,8 +254,8 @@ def main():
 
         data = {
             "producers": producers_array,
-            "last_update": datetime.datetime.utcnow().strftime("%d/%m/%y %H:%M:%S UTC"),
-            "last_update_iso": datetime.datetime.utcnow().isoformat(),
+            "last_update": datetime.datetime.now(datetime.UTC).strftime("%d/%m/%y %H:%M:%S UTC"),
+            "last_update_iso": datetime.datetime.now(datetime.UTC).isoformat(),
             "healthy_api_endpoints": healthy_api_endpoints,
             "healthy_p2p_endpoints": healthy_p2p_endpoints,
             "healthy_history_endpoints": healthy_history_endpoints,

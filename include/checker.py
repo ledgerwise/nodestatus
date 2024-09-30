@@ -323,7 +323,7 @@ class Checker:
             head_block_time_dt = datetime.datetime.strptime(
                 head_block_time, "%Y-%m-%dT%H:%M:%S.%f"
             )
-            now = datetime.datetime.utcnow()
+            now = datetime.datetime.now(datetime.UTC)
             secs_diff = int((now - head_block_time_dt).total_seconds())
 
             if secs_diff > 300:
@@ -446,7 +446,7 @@ class Checker:
             last_action_date = dateutil.parser.parse(
                 json["actions"][0]["timestamp"]
             ).replace(tzinfo=None)
-            diff_secs = (datetime.datetime.utcnow() - last_action_date).total_seconds()
+            diff_secs = (datetime.datetime.now(datetime.UTC) - last_action_date).total_seconds()
             if diff_secs > 600:
                 msg = "Hyperion Last action {} ago".format(
                     humanize.naturaldelta(diff_secs)
@@ -607,7 +607,8 @@ class Checker:
     def check_ipfs(self, url, timeout):
         time.sleep(DELAY)
         try:
-            api_url = f"{url}/ipfs/QmWnfdZkwWJxabDUbimrtaweYF8u9TaESDBM8xvRxxbQxv"
+            api_url = urljoin(url, "ipfs/QmWnfdZkwWJxabDUbimrtaweYF8u9TaESDBM8xvRxxbQxv")
+            print(api_url)
             response = requests.get(api_url, timeout=timeout)
             if response.status_code != 200:
                 self.status = 2
@@ -634,7 +635,7 @@ class Checker:
     def check_lightapi(self, url, timeout):
         time.sleep(DELAY)
         try:
-            api_url = f"{url}/api/status"
+            api_url = urljoin(url, "api/status")
             response = requests.get(api_url, timeout=timeout)
             if response.status_code != 200:
                 self.status = 2
