@@ -323,7 +323,7 @@ class Checker:
             head_block_time_dt = datetime.datetime.strptime(
                 head_block_time, "%Y-%m-%dT%H:%M:%S.%f"
             )
-            now = datetime.datetime.now(datetime.UTC)
+            now = datetime.datetime.utcnow()
             secs_diff = int((now - head_block_time_dt).total_seconds())
 
             if secs_diff > 300:
@@ -446,7 +446,7 @@ class Checker:
             last_action_date = dateutil.parser.parse(
                 json["actions"][0]["timestamp"]
             ).replace(tzinfo=None)
-            diff_secs = (datetime.datetime.now(datetime.UTC) - last_action_date).total_seconds()
+            diff_secs = datetime.datetime.utcnow() - last_action_date).total_seconds()
             if diff_secs > 600:
                 msg = "Hyperion Last action {} ago".format(
                     humanize.naturaldelta(diff_secs)
