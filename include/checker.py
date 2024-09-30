@@ -285,7 +285,7 @@ class Checker:
         time.sleep(DELAY)
         errors_found = False
         try:
-            api_url = "{}/v1/chain/get_info".format(url.rstrip("/"))
+            api_url = f'{url.rstrip("/")}/v1/chain/get_info'
             response = requests.get(api_url, timeout=timeout)
             if response.status_code != 200:
                 self.status = 2
@@ -366,14 +366,14 @@ class Checker:
     def check_history(self, url, timeout):
         time.sleep(DELAY)
         try:
-            history_url = url.rstrip("/")
-            cleos = eospy.cleos.Cleos(url=history_url)
-            result = cleos.get_actions("eosio", timeout=timeout)
-            if not "actions" in result:
+            history_url = f'{url.rstrip("/")}/v1/history/get_actions'
+            payload = {"account_name":"eosio","pos":-1, "offset":-3}
+            response = requests.post(history_url, timeout=timeout, json=payload)
+            if not "actions" in response.json():
                 self.logging.info("No actions in response")
                 return
 
-            if len(result["actions"]) == 0:
+            if len(response.json()["actions"]) == 0:
                 self.logging.info("0 actions returned for eosio")
                 return
 
@@ -385,7 +385,7 @@ class Checker:
             return
 
         self.healthy_history_endpoints.append(url)
-        msg = "History ok for {}".format(url)
+        msg = "History v1 ok for {}".format(url)
         self.endpoint_oks[url].append(msg)
         self.logging.info(msg)
 
@@ -607,9 +607,8 @@ class Checker:
     def check_ipfs(self, url, timeout):
         time.sleep(DELAY)
         try:
-            path = "ipfs/QmWnfdZkwWJxabDUbimrtaweYF8u9TaESDBM8xvRxxbQxv"
-            if url[-1] != '/': path = f'/{path}'
-            api_url = urljoin(url, path)
+            path = "/ipfs/QmWnfdZkwWJxabDUbimrtaweYF8u9TaESDBM8xvRxxbQxv"
+            api_url = urljoin(url.rstrip("/"), path)
             response = requests.get(api_url, timeout=timeout)
             if response.status_code != 200:
                 print(response.text)
@@ -637,9 +636,8 @@ class Checker:
     def check_lightapi(self, url, timeout):
         time.sleep(DELAY)
         try:
-            path = "api/status"
-            if url[-1] != '/': path = f'/{path}'
-            api_url = urljoin(url, path)
+            path = "/api/status"
+            api_url = urljoin(url.rstrip("/"), path)
             response = requests.get(api_url, timeout=timeout)
             if response.status_code != 200:
                 self.status = 2
