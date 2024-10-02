@@ -26,7 +26,6 @@ class Checker:
         self.org_name = self.producer_info["owner"]
         self.bp_json = None
         self.bp_json_string = "{}"
-        self.patroneos = 0
         self.status = 0
         self.errors = []
         self.oks = []
@@ -570,38 +569,6 @@ class Checker:
             self.endpoint_oks[url].append(msg)
             self.logging.info(msg)
 
-    @retry(stop=stop_after_attempt(1), wait=wait_fixed(2), reraise=True)
-    def check_patroneos(self, url, timeout):
-        time.sleep(DELAY)
-        try:
-            url = url.rstrip("/")
-            headers = {"Content-type": "application/json", "Accept": "text/plain"}
-            r = requests.post(
-                "{}/v1/chain/get_account".format(url),
-                data='{"account_name": "ledgerwiseio"}',
-                headers=headers,
-                timeout=timeout,
-            )
-            r_json = r.json()
-
-            if "message" not in r_json:
-                self.logging.info("Response doesn't look like patroneos (no message)")
-                return
-            else:
-                if r_json["message"] != "INVALID_JSON":
-                    self.logging.info(
-                        "Response doesn't look like patroneos  (message not INVALID_JSON)"
-                    )
-                    return
-
-        except Exception as e:
-            self.logging.critical("Error verifyng patroneos from {}: {}".format(url, e))
-            return
-
-        self.patroneos = 1
-        msg = "Patroneos ok for {}".format(url)
-        self.endpoint_oks[url].append(msg)
-        self.logging.info(msg)
 
     @retry(stop=stop_after_attempt(1), wait=wait_fixed(3), reraise=True)
     def check_ipfs(self, url, timeout):
@@ -679,9 +646,6 @@ class Checker:
                             )
                             if self.wrong_chain_id:
                                 return
-                            self.check_patroneos(
-                                node["api_endpoint"], self.chain_info["timeout"]
-                            )
                         if "ssl_endpoint" in node:
                             self.check_api(
                                 node["ssl_endpoint"],
@@ -690,9 +654,6 @@ class Checker:
                             )
                             if self.wrong_chain_id:
                                 return
-                            self.check_patroneos(
-                                node["ssl_endpoint"], self.chain_info["timeout"]
-                            )
                     # Check Account Query
                     if "account-query" in node["features"]:
                         if "api_endpoint" in node:

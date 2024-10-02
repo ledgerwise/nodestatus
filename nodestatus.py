@@ -218,7 +218,6 @@ def main():
                 "hyperion": len(checker.healthy_hyperion_endpoints),
                 "atomic": len(checker.healthy_atomic_endpoints),
                 "lightapi": len(checker.healthy_lightapi_endpoints),
-                "patroneos": checker.patroneos,
                 "position": checker.producer_info["position"],
                 "status": checker.status,
                 "errors": checker.errors,
