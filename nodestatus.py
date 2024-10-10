@@ -90,7 +90,10 @@ def get_producers(chain):
 
         while result["more"] != "":
             result = CLEOS.get_producers(limit=LIMIT, lower_bound=result["more"])
-            producers += result["rows"]
+            if isFIO:
+                producers += result["producers"]
+            else:
+                producers += result["rows"]
 
         active_producers = []
         for producer in producers:
@@ -149,7 +152,6 @@ def bundle(CHAINS):
         ]
         for file in files:
             date = file[-15:-5]
-            print(date)
             with open(file, "r") as fp:
                 bundle[date] = json.load(fp)
 
